@@ -1,0 +1,14 @@
+.vs/
+packages
+Cigars/Cigars/bin/
+Cigars/Cigars/obj/
+Cigars/Cigars.Droid/bin/
+Cigars/Cigars.Droid/obj/
+Cigars/Cigars.iOS/bin/
+Cigars/Cigars.iOS/obj/
+Cigars/Cigars.UWP/bin/
+Cigars/Cigars.UWP/obj/
+Cigars/Cigars.Windows/bin/
+Cigars/Cigars.Windowss/obj/
+Cigars/Cigars.WinPhone/bin/
+Cigars/Cigars.WinPhone/obj/
