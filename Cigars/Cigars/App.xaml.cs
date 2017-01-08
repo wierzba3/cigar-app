@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Cigars.Views;
 using Xamarin.Forms;
 
 namespace Cigars
 {
     public partial class App : Application
     {
+
+        private static ViewModelLocator _locator;
+        public static ViewModelLocator Locator => _locator ?? (_locator = new ViewModelLocator());
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new Cigars.MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
@@ -30,5 +34,7 @@ namespace Cigars
         {
             // Handle when your app resumes
         }
+
+
     }
 }
