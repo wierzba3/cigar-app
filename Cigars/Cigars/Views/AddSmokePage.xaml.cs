@@ -8,14 +8,11 @@ using Xamarin.Forms;
 
 namespace Cigars.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class AddSmokePage : ContentPage
     {
-        public MainPage()
+        public AddSmokePage()
         {
-            NavigationPage.SetHasNavigationBar(this, false);
-            Title = "Main";
             InitializeComponent();
-            BindingContext = App.Locator.Main;
         }
     }
 }

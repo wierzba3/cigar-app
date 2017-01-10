@@ -17,7 +17,7 @@ namespace Cigars
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new TabPage();
         }
 
         protected override void OnStart()

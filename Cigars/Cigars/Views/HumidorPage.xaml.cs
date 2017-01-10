@@ -8,14 +8,12 @@ using Xamarin.Forms;
 
 namespace Cigars.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class HumidorPage : ContentPage
     {
-        public MainPage()
+        public HumidorPage()
         {
-            NavigationPage.SetHasNavigationBar(this, false);
-            Title = "Main";
             InitializeComponent();
-            BindingContext = App.Locator.Main;
+            Title = "Humidor";
         }
     }
 }
