@@ -16,7 +16,14 @@ namespace Cigars.Models
 
         [ForeignKey(typeof(Humidor))]
         public int HumidorId { get; set; }
+        
+        public double Price { get; set; }
 
-        //TODO add fields such as price, place obtained, etc.
+        public string PlaceObtained { get; set; }
+
+        public DateTime DateCreated { get; set; }
+
+        public DateTime DateModified { get; set; }
+
     }
 }

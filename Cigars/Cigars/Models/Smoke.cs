@@ -12,11 +12,16 @@ namespace Cigars.Models
 
         [PrimaryKey]
         public int SmokeId { get; set; }
+        
+        public string Notes { get; set; }
+
+        public double Rating { get; set; }
+
+        public int Duration { get; set; }
 
         public DateTime DateCreated { get; set; }
 
         public DateTime DateModified { get; set; }
 
-        //TODO add fields such as notes, rating, smoke duration
     }
 }
