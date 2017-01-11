@@ -11,10 +11,9 @@
               <StackLayout Orientation="Horizontal" >
                 <BoxView Color="Red"></BoxView>
                 <StackLayout>
-                  <Label Text="{Binding Title}"></Label>
-                  <Label Text="{Binding NewsURL}"></Label>
+                  <Label Text="{Binding Notes}"></Label>
+                  <Label Text="{Binding Rating}"></Label>
                 </StackLayout>
-                <BoxView x:Name="boxView" Color="Blue" ></BoxView>
               </StackLayout>
             </ViewCell.View>
           </ViewCell>

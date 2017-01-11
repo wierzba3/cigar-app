@@ -4,15 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Cigars.Common;
 
-namespace Cigars.ViewModels
+namespace Cigars.Common
 {
-    public class HumidorVM : MyViewModel
+    public class MyViewModel : INotifyPropertyChanged
     {
-        public HumidorVM()
-        {
-            
-        }
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
     }
 }

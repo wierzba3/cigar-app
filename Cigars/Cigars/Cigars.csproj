@@ -38,6 +38,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\MyViewModel.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Cigar.cs" />
     <Compile Include="Models\CigarColor.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\HumidorVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
+    <Compile Include="ViewModels\SmokeHistoryVM.cs" />
     <Compile Include="Views\AddSmokePage.xaml.cs">
       <DependentUpon>AddSmokePage.xaml</DependentUpon>
     </Compile>
