@@ -15,7 +15,7 @@ namespace Cigars.Views
             InitializeComponent();
             Title = "Smokes";
             BindingContext = App.Locator.SmokeHistory;
-            ListSmokes.ItemsSource = Common.Common.GenerateSampleSmokesData();
+            //ListSmokes.ItemsSource = Common.Common.GenerateSampleSmokesData();
         }
     }
 }

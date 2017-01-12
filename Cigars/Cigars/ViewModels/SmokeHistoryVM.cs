@@ -15,7 +15,7 @@ namespace Cigars.ViewModels
 
         public SmokeHistoryVM()
         {
-            _smokeCollection = new ObservableCollection<Smoke>();
+            _smokeCollection = Common.Common.GenerateSampleSmokesData();
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

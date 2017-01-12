@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Cigars.Views.SmokeHistoryPage">
   <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-    <ListView x:Name="ListSmokes">
+    <ListView x:Name="ListSmokes" ItemsSource="{Binding SmokeCollection}">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
