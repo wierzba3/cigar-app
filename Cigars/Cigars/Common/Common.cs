@@ -48,7 +48,7 @@ namespace Cigars.Common
 
 
             ObservableCollection<Smoke> result = new ObservableCollection<Smoke>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Smoke smoke = new Smoke();
                 smoke.Rating = i;

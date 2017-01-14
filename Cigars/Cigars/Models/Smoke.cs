@@ -27,7 +27,7 @@ namespace Cigars.Models
 
         public DateTime DateModified { get; set; }
 
-        [OneToOne]
+        [ManyToOne]
         public Cigar Cigar { get; set; }
 
     }
