@@ -40,6 +40,8 @@
     </Compile>
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\MyViewModel.cs" />
+    <Compile Include="Database\Database.cs" />
+    <Compile Include="Database\IFileHelper.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Cigar.cs" />
     <Compile Include="Models\CigarColor.cs" />

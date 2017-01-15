@@ -11,17 +11,19 @@ namespace Cigars.Views
 {
     public partial class SmokeHistoryPage : ContentPage
     {
+        //a copy of the reference to the VM to avoid having to cast the BindingContext
+
+        private SmokeHistoryVM vm;
         public SmokeHistoryPage()
         {
             InitializeComponent();
             Title = "Smokes";
-            BindingContext = App.Locator.SmokeHistory;
-            //ListSmokes.ItemsSource = Common.Common.GenerateSampleSmokesData();
+            BindingContext = vm = App.Locator.SmokeHistory;
         }
 
         protected void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
-            SmokeHistoryVM vm = (SmokeHistoryVM) BindingContext;
+            //SmokeHistoryVM vm = (SmokeHistoryVM) BindingContext;
             Smoke smoke = new Smoke();
             smoke.Rating = 7.5;
             smoke.DateCreated = DateTime.Now;
@@ -30,6 +32,7 @@ namespace Cigars.Views
             cigar.Name = "new cigar";
             smoke.Cigar = new Cigar();
             vm.SmokeCollection.Add(smoke);
+            App.Database.Insert(smoke);
         }
 
     }

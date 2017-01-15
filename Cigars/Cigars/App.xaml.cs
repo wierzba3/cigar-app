@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Cigars.Database;
 using Cigars.Views;
 using Xamarin.Forms;
 
@@ -18,6 +19,20 @@ namespace Cigars
             InitializeComponent();
 
             MainPage = new TabPage();
+        }
+
+        private static Database.Database database;
+
+        public static Database.Database Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = database ?? new Database.Database(DependencyService.Get<IFileHelper>().GetLocalFilePath("cigars.db3"));
+                }
+                return database;
+            }
         }
 
         protected override void OnStart()
