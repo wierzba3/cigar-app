@@ -21,11 +21,17 @@ namespace Cigars.Views
             InitializeComponent();
             Title = "Smokes";
             BindingContext = vm = App.Locator.SmokeHistory;
-            cigars = App.Database.GetAll<Cigar>();
-            if(!cigars.Any()) throw new Exception("no cigars");
+            cigars = App.Database.GetAll<Cigar>().Result;
+            if (!cigars.Any())
+            {
+                Cigar cigar = new Cigar();
+                cigar.Name = "cigar1";
+                cigars.Add(cigar);
+                App.Database.Insert(cigar);
+            }
         }
 
-        protected void OnTapGestureRecognizerTapped(object sender, EventArgs args)
+        protected async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
             //SmokeHistoryVM vm = (SmokeHistoryVM) BindingContext;
             Smoke smoke = new Smoke();
@@ -35,7 +41,7 @@ namespace Cigars.Views
             smoke.Cigar = cigars[0];
 
             vm.SmokeCollection.Add(smoke);
-            App.Database.Insert(smoke);
+            await App.Database.Insert(smoke);
         }
 
     }

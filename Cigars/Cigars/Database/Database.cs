@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Cigars.Models;
 using SQLite;
 using SQLite.Net;
+using SQLite.Net.Async;
 using SQLite.Net.Interop;
 using Xamarin.Forms;
 
@@ -14,32 +15,30 @@ namespace Cigars.Database
 
     public class Database
     {
-        private SQLiteConnection db;
+        private SQLiteAsyncConnection db;
 
         public Database(string path)
         {
             ISQLitePlatform platformInstance = DependencyService.Get<ISQLitePlatformInstance>().GetSQLitePlatformInstance();
-            db = new SQLiteConnection(platformInstance, path);
-            db.CreateTable<Cigar>();
-            db.CreateTable<Smoke>();
+            //db = new SQLiteConnection(platformInstance, path);
+
+            SQLiteConnectionString connectionString = new SQLiteConnectionString(path, true);
+            var connectionFactory = new Func<SQLiteConnectionWithLock>(() => new SQLiteConnectionWithLock(platformInstance, connectionString));
+            db = new SQLiteAsyncConnection(connectionFactory);
+            db.CreateTableAsync<Cigar>();
+            db.CreateTableAsync<Smoke>();
+            //db.CreateTable<Cigar>();
+            //db.CreateTable<Smoke>();
         }
 
-        public List<T> GetAll<T>() where T : class, new()
+        public Task<List<T>> GetAll<T>() where T : class, new()
         {
-            return db.Table<T>().ToList();
+            return db.Table<T>().ToListAsync();
         }
 
-        public int Insert<T>(T val) where T: class, new()
+        public Task<int> Insert<T>(T val) where T: class, new()
         {
-            try
-            {
-                return db.Insert(val);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            return db.InsertAsync(val);
         }
 
 

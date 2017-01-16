@@ -17,7 +17,7 @@ namespace Cigars.ViewModels
         {
             try
             {
-                _smokeCollection = new ObservableCollection<Smoke>(App.Database.GetAll<Smoke>());
+                _smokeCollection = new ObservableCollection<Smoke>(App.Database.GetAll<Smoke>().Result);
             }
             catch (Exception ex)
             {

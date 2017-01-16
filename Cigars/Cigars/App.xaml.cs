@@ -29,7 +29,7 @@ namespace Cigars
             {
                 if (database == null)
                 {
-                    database = database ?? new Database.Database(DependencyService.Get<IFileHelper>().GetLocalFilePath("cigars.db3"));
+                    database = new Database.Database(DependencyService.Get<IFileHelper>().GetLocalFilePath("cigars.db3"));
                 }
                 return database;
             }

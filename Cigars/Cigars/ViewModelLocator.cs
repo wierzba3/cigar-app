@@ -28,7 +28,14 @@ namespace Cigars
             }
         }
 
-        public SmokeHistoryVM SmokeHistory => ServiceLocator.Current.GetInstance<SmokeHistoryVM>();
-
+        public SmokeHistoryVM SmokeHistory
+        {
+            get
+            {
+                SmokeHistoryVM result = ServiceLocator.Current.GetInstance<SmokeHistoryVM>();
+                return result;
+            }
+            
+        }
     }
 }
