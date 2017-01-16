@@ -1,2 +1,0 @@
-C:\Users\jwierzba\Documents\Visual Studio 2015\Projects\Cigars\Cigars\Cigars.Windows\Cigars.Windows.csproj;neutral
-C:\Users\jwierzba\Documents\Visual Studio 2015\Projects\Cigars\Cigars\Cigars\Cigars.csproj;neutral
