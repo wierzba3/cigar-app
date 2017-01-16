@@ -11,7 +11,7 @@ namespace Cigars.Models
     public class Smoke
     {
 
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int SmokeId { get; set; }
 
         [ForeignKey(typeof(Cigar))]
@@ -27,7 +27,7 @@ namespace Cigars.Models
 
         public DateTime DateModified { get; set; }
 
-        [ManyToOne]
+        [ManyToOne(CascadeOperations = CascadeOperation.All)]
         public Cigar Cigar { get; set; }
 
     }

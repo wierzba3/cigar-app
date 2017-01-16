@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Cigars.Models;
 using SQLite;
+using SQLite.Net;
+using SQLite.Net.Interop;
+using Xamarin.Forms;
 
 namespace Cigars.Database
 {
-
-
 
     public class Database
     {
@@ -17,7 +18,8 @@ namespace Cigars.Database
 
         public Database(string path)
         {
-            db = new SQLiteConnection(path);
+            ISQLitePlatform platformInstance = DependencyService.Get<ISQLitePlatformInstance>().GetSQLitePlatformInstance();
+            db = new SQLiteConnection(platformInstance, path);
             db.CreateTable<Cigar>();
             db.CreateTable<Smoke>();
         }
@@ -27,10 +29,20 @@ namespace Cigars.Database
             return db.Table<T>().ToList();
         }
 
-        public void Insert<T>(T val) where T: class, new()
+        public int Insert<T>(T val) where T: class, new()
         {
-            db.Insert(val);
+            try
+            {
+                return db.Insert(val);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
+
+
 
     }
 }
