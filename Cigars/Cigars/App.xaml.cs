@@ -17,8 +17,11 @@ namespace Cigars
         public App()
         {
             InitializeComponent();
+            TabPage tabPage = new TabPage();
+            NavigationPage navPage = new NavigationPage(tabPage);
+            NavigationPage.SetHasNavigationBar(tabPage, false);
+            MainPage = navPage;
 
-            MainPage = new TabPage();
         }
 
         private static Database.Database database;

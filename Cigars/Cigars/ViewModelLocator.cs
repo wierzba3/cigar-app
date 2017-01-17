@@ -17,6 +17,7 @@ namespace Cigars
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainVM>();
             SimpleIoc.Default.Register<SmokeHistoryVM>();
+            SimpleIoc.Default.Register<AddSmokeVM>();
         }
 
         public MainVM Main
@@ -35,7 +36,15 @@ namespace Cigars
                 SmokeHistoryVM result = ServiceLocator.Current.GetInstance<SmokeHistoryVM>();
                 return result;
             }
-            
+        }
+
+        public AddSmokeVM AddSmoke
+        {
+            get
+            {
+                AddSmokeVM result = ServiceLocator.Current.GetInstance<AddSmokeVM>();
+                return result;
+            }
         }
     }
 }

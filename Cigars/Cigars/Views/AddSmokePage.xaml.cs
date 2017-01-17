@@ -13,6 +13,8 @@ namespace Cigars.Views
         public AddSmokePage()
         {
             InitializeComponent();
+            Title = "Add Smoke";
+            BindingContext = App.Locator.AddSmoke;
         }
     }
 }

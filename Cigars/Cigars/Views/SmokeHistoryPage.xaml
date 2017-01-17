@@ -7,7 +7,7 @@
       <Label Text="Add Smoke" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Label>
       <StackLayout.GestureRecognizers>
         <TapGestureRecognizer
-          Tapped="OnTapGestureRecognizerTapped"/>
+          Tapped="AddSmokeTapped"/>
       </StackLayout.GestureRecognizers>
     </StackLayout>
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

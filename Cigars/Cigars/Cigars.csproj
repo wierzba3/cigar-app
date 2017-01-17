@@ -58,6 +58,7 @@
     <Compile Include="Models\WrapperToCigar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="ViewModels\AddSmokeVM.cs" />
     <Compile Include="ViewModels\HumidorVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\SmokeHistoryVM.cs" />
