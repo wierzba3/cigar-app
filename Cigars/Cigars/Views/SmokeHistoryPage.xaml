@@ -11,7 +11,11 @@
       </StackLayout.GestureRecognizers>
     </StackLayout>
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-      <ListView x:Name="ListSmokes" ItemsSource="{Binding SmokeCollection}">
+      <ListView 
+        x:Name="ListSmokes" 
+        ItemsSource="{Binding SmokeCollection}" 
+        ItemSelected="OnSmokeSelection"
+        ItemTapped="OnSmokeTapped">
         <ListView.Header>
 
         </ListView.Header>

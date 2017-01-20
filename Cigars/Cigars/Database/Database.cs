@@ -38,8 +38,15 @@ namespace Cigars.Database
 
         public Task<int> Insert<T>(T val) where T: class, new()
         {
+            
             return db.InsertAsync(val);
         }
+
+        public Task<int> Delete<T>(object pk) where T: class, new()
+        {
+            return db.DeleteAsync<T>(pk);
+        }
+
 
 
 

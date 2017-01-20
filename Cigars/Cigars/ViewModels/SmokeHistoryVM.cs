@@ -15,15 +15,13 @@ namespace Cigars.ViewModels
 
         public SmokeHistoryVM()
         {
-            try
-            {
-                _smokeCollection = new ObservableCollection<Smoke>(App.Database.GetAll<Smoke>().Result);
-            }
-            catch (Exception ex)
-            {
+            
 
-                throw;
-            }
+        }
+
+        public async Task LoadSmokes()
+        {
+            SmokeCollection = new ObservableCollection<Smoke>(await App.Database.GetAll<Smoke>());
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

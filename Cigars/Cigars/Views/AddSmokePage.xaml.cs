@@ -16,5 +16,8 @@ namespace Cigars.Views
             Title = "Add Smoke";
             BindingContext = App.Locator.AddSmoke;
         }
+
+
+
     }
 }

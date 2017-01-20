@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,14 +16,15 @@ namespace Cigars.Views
 
         private List<Cigar> cigars;
 
-        private SmokeHistoryVM vm;
+        private SmokeHistoryVM _vm;
+
         public SmokeHistoryPage()
         {
             InitializeComponent();
             Title = "Smokes";
-            BindingContext = vm = App.Locator.SmokeHistory;
+            BindingContext = _vm = App.Locator.SmokeHistory;
             cigars = App.Database.GetAll<Cigar>().Result;
-            
+
             if (!cigars.Any())
             {
                 Cigar cigar = new Cigar();
@@ -30,6 +32,15 @@ namespace Cigars.Views
                 cigars.Add(cigar);
                 App.Database.Insert(cigar);
             }
+        }
+
+
+
+        protected override void OnAppearing()
+        {
+
+            _vm.SmokeCollection = new ObservableCollection<Smoke>(App.Database.GetAll<Smoke>().Result);
+            base.OnAppearing();
         }
 
         protected async void AddSmokeTapped(object sender, EventArgs args)
@@ -46,5 +57,17 @@ namespace Cigars.Views
             await Navigation.PushAsync(new AddSmokePage());
         }
 
+        protected void OnSmokeSelection(object sender, SelectedItemChangedEventArgs e)
+        {
+            //disable the ability to select items
+            ((ListView) sender).SelectedItem = null;
+        }
+
+        protected async void OnSmokeTapped(object sender, ItemTappedEventArgs e)
+        {
+            Smoke smoke = (Smoke) e.Item;
+            App.Locator.AddSmoke.SmokeModel = smoke;
+            await Navigation.PushAsync(new AddSmokePage());
+        }
     }
 }
