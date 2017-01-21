@@ -11,6 +11,8 @@ namespace Cigars.Models
     public class Smoke
     {
 
+        //TODO flavor field
+
         [PrimaryKey, AutoIncrement]
         public int SmokeId { get; set; }
 

@@ -30,8 +30,46 @@ namespace Cigars.ViewModels
             }
             set
             {
-                //TODO fill in input fields with Smokes values
                 _smokeModel = value;
+                Rating = _smokeModel.Rating.ToString();
+                Notes = _smokeModel.Notes;
+                Duration = _smokeModel.Duration.ToString();
+            }
+        }
+
+        private string _notes;
+
+        public string Notes
+        {
+            get { return _notes; }
+            set
+            {
+                _notes = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Notes"));
+            }
+        }
+
+        private string _duration;
+
+        public string Duration
+        {
+            get { return _duration; }
+            set
+            {
+                _duration = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Duration"));
+            }
+        }
+
+        private string _rating;
+
+        public string Rating
+        {
+            get { return _rating; }
+            set
+            {
+                _rating = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Rating"));
             }
         }
 
@@ -55,11 +93,21 @@ namespace Cigars.ViewModels
                     }
                     else cigar = cigars[0];
 
+                    double ratingValue;
+                    int durationValue;
+                    bool parsed = double.TryParse(Rating, out ratingValue);
+                    //the input textbox is numeric only but perhaps I should report an error 
+                    //in case the numeric restriction isn't recognized by some platform
+                    if (!parsed) return;
+                    parsed = int.TryParse(Duration, out durationValue);
+                    if (!parsed) return;
+
                     Smoke newSmoke = new Smoke()
                     {
                         Cigar = cigar,
-                        Rating = 7.5,
-                        Duration = 30,
+                        Rating = ratingValue,
+                        Duration = durationValue,
+                        Notes = Notes,
                         DateCreated = DateTime.UtcNow,
                         DateModified = DateTime.UtcNow
                     };
