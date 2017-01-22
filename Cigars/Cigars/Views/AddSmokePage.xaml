@@ -7,6 +7,12 @@
     <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical">
       
       <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,10,0,10">
+        <Label Text="Cigar" HorizontalOptions="Center" VerticalOptions="Center" />
+        <Button Text="Select" Command="{Binding SelectCigarCommand}" />
+        <Label Text="{Binding ChosenCigarText}" />
+      </StackLayout>
+        
+      <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,10,0,10">
         <Label Text="Rating" HorizontalOptions="Center" VerticalOptions="Center" />
         <Entry Keyboard="Numeric" WidthRequest="100" HorizontalOptions="Center" Text="{Binding Rating}" />
       </StackLayout>

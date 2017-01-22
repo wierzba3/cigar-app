@@ -8,11 +8,14 @@ using Cigars.Common;
 
 namespace Cigars.ViewModels
 {
-    public class HumidorVM : MyViewModel
+    public class HumidorVM : INotifyPropertyChanged
     {
         public HumidorVM()
         {
             
         }
+
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
     }
 }

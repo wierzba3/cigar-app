@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Cigars.Common;
 using Cigars.Models;
+using Cigars.Views;
 using Xamarin.Forms;
 
 namespace Cigars.ViewModels
@@ -36,6 +38,49 @@ namespace Cigars.ViewModels
                 Duration = _smokeModel.Duration.ToString();
             }
         }
+
+        private void HandleCigarChosen(object sender, CigarChosenEventHandler e)
+        {
+            Cigar cigar = e.CigarObject;
+            ChosenCigarText = cigar.Name;
+            App.Current.MainPage.Navigation.PopAsync();
+        }
+
+        private void HandleChooseCigarCancel(object sender, EventArgs e)
+        {
+            App.Current.MainPage.Navigation.PopAsync();
+        }
+
+        private ICommand _selectCigarCommand;
+
+        public ICommand SelectCigarCommand
+        {
+            get
+            {
+                _selectCigarCommand = new Command(
+                    async (t) =>
+                    {
+                        await App.Current.MainPage.Navigation.PushAsync(new ChooseCigarPage(HandleCigarChosen, HandleChooseCigarCancel));
+                    });
+                return _selectCigarCommand;
+            }
+        }
+
+        private string _chosenCigarText;
+
+        public string ChosenCigarText
+        {
+            get
+            {
+                return _chosenCigarText;
+            }
+            set
+            {
+                _chosenCigarText = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("ChosenCigarText"));
+            }
+        }
+
 
         private string _notes;
 
