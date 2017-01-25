@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,24 @@ namespace Cigars.ViewModels
 
         public ChooseCigarVM()
         {
-            
+            _cigarCollection = new ObservableCollection<Cigar>(App.Database.GetAll<Cigar>().Result);
         }
 
         public EventHandler<CigarChosenEventHandler> CigarChosen;
         public EventHandler Cancel;
 
         public event PropertyChangedEventHandler PropertyChanged = delegate{};
+
+        private ObservableCollection<Cigar> _cigarCollection;
+        public ObservableCollection<Cigar> CigarCollection
+        {
+            get { return _cigarCollection; }
+            set
+            {
+                _cigarCollection = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("CigarCollection"));
+            }
+        }
 
         private ICommand _chooseCigarCommand;
         public ICommand ChooseCigarCommand

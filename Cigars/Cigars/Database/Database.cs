@@ -47,6 +47,11 @@ namespace Cigars.Database
             return db.DeleteAsync<T>(pk);
         }
 
+        public Task<int> DeleteAll<T>() where T : class, new()
+        {
+            return db.DeleteAllAsync<T>();
+        }
+
 
 
 

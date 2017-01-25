@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Cigars.Database;
+using Cigars.Models;
 using Cigars.Views;
 using Xamarin.Forms;
-
+/*
+    TODO
+    - chosen cigar is null from the add smoke / choose cigar page 
+*/
 namespace Cigars
 {
     public partial class App : Application
@@ -22,6 +26,18 @@ namespace Cigars
             NavigationPage.SetHasNavigationBar(tabPage, false);
             MainPage = navPage;
 
+            int retVal;
+            retVal = Database.DeleteAll<Smoke>().Result;
+            retVal = Database.DeleteAll<Cigar>().Result;
+            Cigar cigar = new Cigar();
+            cigar.Name = "Padron";
+            Cigar cigar2 = new Cigar();
+            cigar2.Name = "Churchill";
+            Cigar cigar3 = new Cigar();
+            cigar3.Name = "Montecristo";
+            retVal = Database.Insert(cigar).Result;
+            retVal = Database.Insert(cigar2).Result;
+            retVal = Database.Insert(cigar3).Result;
         }
 
         private static Database.Database database;

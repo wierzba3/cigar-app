@@ -2,8 +2,28 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Cigars.Views.ChooseCigarPage">
-  
-  <Label Text="ChooseCigarPage" VerticalOptions="Center" HorizontalOptions="Center" />
-  <Button Text="Choose" Command="{Binding ChooseCigarCommand}" />
-  
+  <StackLayout Orientation="Vertical">
+    
+
+    <Label Text="ChooseCigarPage" VerticalOptions="Center" HorizontalOptions="Center" />
+    <Button Text="Choose" Command="{Binding ChooseCigarCommand}" />
+    <ListView
+          x:Name="ListCigars"
+          ItemsSource="{Binding CigarCollection}"
+          ItemSelected="OnCigarSelected"
+          ItemTapped="OnCigarTapped">
+      <ListView.Header>
+
+      </ListView.Header>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.View>
+              <Label Text="{Binding Name}" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+            </ViewCell.View>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
 </ContentPage>

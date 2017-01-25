@@ -17,7 +17,7 @@ namespace Cigars.ViewModels
 
         public AddSmokeVM()
         {
-            
+            if(SmokeModel == null) _smokeModel = new Smoke();
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
@@ -43,6 +43,7 @@ namespace Cigars.ViewModels
         {
             Cigar cigar = e.CigarObject;
             ChosenCigarText = cigar.Name;
+            _smokeModel.Cigar = cigar;
             App.Current.MainPage.Navigation.PopAsync();
         }
 
@@ -126,17 +127,17 @@ namespace Cigars.ViewModels
             {
                 _saveCommand = new Command(async (t) =>
                 {
-                    List<Cigar> cigars = await App.Database.GetAll<Cigar>();
-                    Cigar cigar;
-                    if (!cigars.Any())
-                    {
-                        Cigar newCigar = new Cigar();
-                        newCigar.Name = "cigar1";
-                        cigars.Add(newCigar);
-                        await App.Database.Insert(newCigar);
-                        cigar = newCigar;
-                    }
-                    else cigar = cigars[0];
+                    //List<Cigar> cigars = await App.Database.GetAll<Cigar>();
+                    //Cigar cigar;
+                    //if (!cigars.Any())
+                    //{
+                    //    Cigar newCigar = new Cigar();
+                    //    newCigar.Name = "cigar1";
+                    //    cigars.Add(newCigar);
+                    //    await App.Database.Insert(newCigar);
+                    //    cigar = newCigar;
+                    //}
+                    //else cigar = cigars[0];
 
                     double ratingValue;
                     int durationValue;
@@ -149,7 +150,7 @@ namespace Cigars.ViewModels
 
                     Smoke newSmoke = new Smoke()
                     {
-                        Cigar = cigar,
+                        Cigar = _smokeModel.Cigar,
                         Rating = ratingValue,
                         Duration = durationValue,
                         Notes = Notes,
