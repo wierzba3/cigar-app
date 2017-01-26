@@ -38,8 +38,7 @@ namespace Cigars.Views
 
         protected override void OnAppearing()
         {
-
-            _vm.SmokeCollection = new ObservableCollection<Smoke>(App.Database.GetAll<Smoke>().Result);
+            _vm.SmokeCollection = new ObservableCollection<Smoke>(App.Database.GetAllWithChildren<Smoke>().Result);
             base.OnAppearing();
         }
 

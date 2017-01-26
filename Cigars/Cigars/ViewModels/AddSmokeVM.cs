@@ -127,30 +127,25 @@ namespace Cigars.ViewModels
             {
                 _saveCommand = new Command(async (t) =>
                 {
-                    //List<Cigar> cigars = await App.Database.GetAll<Cigar>();
-                    //Cigar cigar;
-                    //if (!cigars.Any())
-                    //{
-                    //    Cigar newCigar = new Cigar();
-                    //    newCigar.Name = "cigar1";
-                    //    cigars.Add(newCigar);
-                    //    await App.Database.Insert(newCigar);
-                    //    cigar = newCigar;
-                    //}
-                    //else cigar = cigars[0];
 
                     double ratingValue;
                     int durationValue;
                     bool parsed = double.TryParse(Rating, out ratingValue);
                     //the input textbox is numeric only but perhaps I should report an error 
                     //in case the numeric restriction isn't recognized by some platform
-                    if (!parsed) return;
+                    if (!parsed)
+                        return;//TODO error
                     parsed = int.TryParse(Duration, out durationValue);
-                    if (!parsed) return;
+                    if (!parsed)
+                        return;//TODO error
+
+                    if (_smokeModel.Cigar == null)
+                        return; //TODO error
 
                     Smoke newSmoke = new Smoke()
                     {
                         Cigar = _smokeModel.Cigar,
+                        CigarId = _smokeModel.CigarId,
                         Rating = ratingValue,
                         Duration = durationValue,
                         Notes = Notes,
@@ -158,7 +153,8 @@ namespace Cigars.ViewModels
                         DateModified = DateTime.UtcNow
                     };
                     
-                    await App.Database.Insert(newSmoke);
+                    await App.Database.InsertWithChildren(newSmoke);
+                    
                     await App.Locator.SmokeHistory.LoadSmokes();
                     await App.Current.MainPage.Navigation.PopAsync();
                 });

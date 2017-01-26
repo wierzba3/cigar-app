@@ -8,6 +8,7 @@ using SQLite;
 using SQLite.Net;
 using SQLite.Net.Async;
 using SQLite.Net.Interop;
+using SQLiteNetExtensionsAsync.Extensions;
 using Xamarin.Forms;
 
 namespace Cigars.Database
@@ -36,10 +37,19 @@ namespace Cigars.Database
             return db.Table<T>().ToListAsync();
         }
 
+        public Task<List<T>> GetAllWithChildren<T>() where T : class, new()
+        {
+            return db.GetAllWithChildrenAsync<T>();
+        }
+
         public Task<int> Insert<T>(T val) where T: class, new()
         {
-            
             return db.InsertAsync(val);
+        }
+
+        public Task InsertWithChildren<T>(T val) where T : class, new()
+        {
+            return db.InsertWithChildrenAsync(val);
         }
 
         public Task<int> Delete<T>(object pk) where T: class, new()
