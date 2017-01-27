@@ -17,13 +17,17 @@ namespace Cigars.ViewModels
 
         public ChooseCigarVM()
         {
-            _cigarCollection = new ObservableCollection<Cigar>(App.Database.GetAll<Cigar>().Result);
+            
+            //_cigarCollection = new ObservableCollection<Cigar>(App.Database.GetAll<Cigar>().Result);
+
         }
 
         public EventHandler<CigarChosenEventHandler> CigarChosen;
         public EventHandler Cancel;
 
         public event PropertyChangedEventHandler PropertyChanged = delegate{};
+
+
 
         private ObservableCollection<Cigar> _cigarCollection;
         public ObservableCollection<Cigar> CigarCollection

@@ -3,12 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Cigars.Views.ChooseCigarPage">
   <StackLayout Orientation="Vertical">
-    
-
-    <Label Text="ChooseCigarPage" VerticalOptions="Center" HorizontalOptions="Center" />
-    <Button Text="Choose" Command="{Binding ChooseCigarCommand}" />
+    <SearchBar x:Name="sbSearch" Placeholder="Search" />
     <ListView
-          x:Name="ListCigars"
+          x:Name="lvCigars"
           ItemsSource="{Binding CigarCollection}"
           ItemSelected="OnCigarSelected"
           ItemTapped="OnCigarTapped">

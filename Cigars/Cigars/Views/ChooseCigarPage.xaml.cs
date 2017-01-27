@@ -21,7 +21,12 @@ namespace Cigars.Views
             BindingContext = _vm = App.Locator.ChooseCigar;
             _vm.CigarChosen = cigarChosenArg;
             _vm.Cancel = cancelArg;
+            sbSearch.TextChanged += FilterContacts;
+            _allCigars = App.Database.GetAll<Cigar>().Result;
+            lvCigars.ItemsSource = _allCigars;
         }
+
+        private List<Cigar> _allCigars;
 
         protected void OnCigarSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -31,13 +36,18 @@ namespace Cigars.Views
 
         protected async void OnCigarTapped(object sender, ItemTappedEventArgs e)
         {
-            //Smoke smoke = (Smoke)e.Item;
-            //App.Locator.AddSmoke.SmokeModel = smoke;
-            //await Navigation.PushAsync(new AddSmokePage());
             Cigar chosenCigar = (Cigar) e.Item;
             CigarChosenEventHandler cigarEvent = new CigarChosenEventHandler(chosenCigar);
             _vm.CigarChosen(this, cigarEvent);
         }
+
+        private async void FilterContacts(object sender, TextChangedEventArgs e)
+        {
+            string searchText = sbSearch.Text;
+            if (string.IsNullOrEmpty(searchText)) lvCigars.ItemsSource = _allCigars;
+            lvCigars.ItemsSource = _allCigars.Where((c) => c.Name == null ? false : c.Name.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
 
     }
 }

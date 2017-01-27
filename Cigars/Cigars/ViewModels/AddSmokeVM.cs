@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using Cigars.Common;
 using Cigars.Models;
 using Cigars.Views;
@@ -134,14 +135,22 @@ namespace Cigars.ViewModels
                     //the input textbox is numeric only but perhaps I should report an error 
                     //in case the numeric restriction isn't recognized by some platform
                     if (!parsed)
+                    {
+                        UserDialogs.Instance.ShowError("Enter a valid rating number.");
                         return;//TODO error
+                    }
+                        
                     parsed = int.TryParse(Duration, out durationValue);
                     if (!parsed)
-                        return;//TODO error
-
-                    if (_smokeModel.Cigar == null)
+                    {
+                        UserDialogs.Instance.ShowError("Enter a valid Duration integer.");
                         return; //TODO error
-
+                    }
+                    if (_smokeModel.Cigar == null)
+                    {
+                        UserDialogs.Instance.ShowError("Choose a cigar.");
+                        return; //TODO error
+                    }
                     Smoke newSmoke = new Smoke()
                     {
                         Cigar = _smokeModel.Cigar,

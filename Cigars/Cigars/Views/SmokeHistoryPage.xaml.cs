@@ -44,15 +44,6 @@ namespace Cigars.Views
 
         protected async void AddSmokeTapped(object sender, EventArgs args)
         {
-            //SmokeHistoryVM vm = (SmokeHistoryVM) BindingContext;
-            //Smoke smoke = new Smoke();
-            //smoke.Rating = DateTime.Now.Second % 10;
-            //smoke.DateCreated = DateTime.Now;
-            //smoke.Notes = "notes";
-            //smoke.Cigar = cigars[0];
-
-            //vm.SmokeCollection.Add(smoke);
-            //await App.Database.Insert(smoke);
             await Navigation.PushAsync(new AddSmokePage());
         }
 

@@ -1,11 +1,12 @@
 ﻿using System;
-
+using Acr.UserDialogs;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Xamarin.Forms;
 
 namespace Cigars.Droid
 {
@@ -16,10 +17,12 @@ namespace Cigars.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
             base.OnCreate(bundle);
-
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            UserDialogs.Init(() => (Activity) Forms.Context);
+
+
             LoadApplication(new App());
         }
     }
