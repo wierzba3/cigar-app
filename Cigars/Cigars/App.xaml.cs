@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Acr.UserDialogs;
 using Cigars.Database;
 using Cigars.Models;
 using Cigars.Views;
@@ -10,7 +9,8 @@ using GalaSoft.MvvmLight.Ioc;
 using Xamarin.Forms;
 /*
     TODO
-    - chosen cigar is null from the add smoke / choose cigar page 
+    - ACR user dialogs plugin crashes on android launch for api 23
+    - start on humidor page, add a listview of humidor entries
 */
 namespace Cigars
 {

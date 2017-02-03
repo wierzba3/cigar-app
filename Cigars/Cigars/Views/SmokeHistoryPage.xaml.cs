@@ -44,7 +44,15 @@ namespace Cigars.Views
 
         protected async void AddSmokeTapped(object sender, EventArgs args)
         {
-            await Navigation.PushAsync(new AddSmokePage());
+            try
+            {
+                await Navigation.PushAsync(new AddSmokePage(new Smoke()));
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         protected void OnSmokeSelection(object sender, SelectedItemChangedEventArgs e)
@@ -56,8 +64,7 @@ namespace Cigars.Views
         protected async void OnSmokeTapped(object sender, ItemTappedEventArgs e)
         {
             Smoke smoke = (Smoke) e.Item;
-            App.Locator.AddSmoke.SmokeModel = smoke;
-            await Navigation.PushAsync(new AddSmokePage());
+            await Navigation.PushAsync(new AddSmokePage(smoke));
         }
     }
 }

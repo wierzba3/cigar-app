@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
+
 using Cigars.Common;
 using Cigars.Models;
 using Cigars.Views;
@@ -18,33 +20,19 @@ namespace Cigars.ViewModels
 
         public AddSmokeVM()
         {
-            if(SmokeModel == null) _smokeModel = new Smoke();
+            //if (SmokeModel == null) SmokeModel = new Smoke();
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        private Smoke _smokeModel;
-
-        public Smoke SmokeModel
-        {
-            get
-            {
-                return _smokeModel;
-            }
-            set
-            {
-                _smokeModel = value;
-                Rating = _smokeModel.Rating.ToString();
-                Notes = _smokeModel.Notes;
-                Duration = _smokeModel.Duration.ToString();
-            }
-        }
+        
+        public Smoke SmokeModel { get; set; }
 
         private void HandleCigarChosen(object sender, CigarChosenEventHandler e)
         {
             Cigar cigar = e.CigarObject;
             ChosenCigarText = cigar.Name;
-            _smokeModel.Cigar = cigar;
+            SmokeModel.Cigar = cigar;
             App.Current.MainPage.Navigation.PopAsync();
         }
 
@@ -68,14 +56,12 @@ namespace Cigars.ViewModels
             }
         }
 
-        private string _chosenCigarText;
+        //private string _chosenCigarText;
 
+        private string _chosenCigarText;
         public string ChosenCigarText
         {
-            get
-            {
-                return _chosenCigarText;
-            }
+            get { return _chosenCigarText; }
             set
             {
                 _chosenCigarText = value;
@@ -83,39 +69,36 @@ namespace Cigars.ViewModels
             }
         }
 
-
-        private string _notes;
+        
 
         public string Notes
         {
-            get { return _notes; }
+            get { return SmokeModel.Notes; }
             set
             {
-                _notes = value;
+                SmokeModel.Notes = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("Notes"));
             }
         }
-
-        private string _duration;
+        
 
         public string Duration
         {
-            get { return _duration; }
+            get { return SmokeModel.Duration == default(float) ? null : SmokeModel.Duration.ToString(); }
             set
             {
-                _duration = value;
+                SmokeModel.Duration = int.Parse(value);
                 PropertyChanged(this, new PropertyChangedEventArgs("Duration"));
             }
         }
-
-        private string _rating;
+        
 
         public string Rating
         {
-            get { return _rating; }
+            get { return SmokeModel.Rating == default(float) ? null : SmokeModel.Rating.ToString(); }
             set
             {
-                _rating = value;
+                SmokeModel.Rating = int.Parse(value);
                 PropertyChanged(this, new PropertyChangedEventArgs("Rating"));
             }
         }
@@ -139,35 +122,35 @@ namespace Cigars.ViewModels
                         UserDialogs.Instance.ShowError("Enter a valid rating number.");
                         return;//TODO error
                     }
-                        
+
                     parsed = int.TryParse(Duration, out durationValue);
                     if (!parsed)
                     {
                         UserDialogs.Instance.ShowError("Enter a valid Duration integer.");
                         return; //TODO error
                     }
-                    if (_smokeModel.Cigar == null)
+                    if (SmokeModel.Cigar == null)
                     {
                         UserDialogs.Instance.ShowError("Choose a cigar.");
                         return; //TODO error
                     }
                     Smoke newSmoke = new Smoke()
                     {
-                        Cigar = _smokeModel.Cigar,
-                        CigarId = _smokeModel.CigarId,
+                        Cigar = SmokeModel.Cigar,
+                        CigarId = SmokeModel.CigarId,
                         Rating = ratingValue,
                         Duration = durationValue,
                         Notes = Notes,
                         DateCreated = DateTime.UtcNow,
                         DateModified = DateTime.UtcNow
                     };
-                    
+
                     await App.Database.InsertWithChildren(newSmoke);
-                    
+
                     await App.Locator.SmokeHistory.LoadSmokes();
                     await App.Current.MainPage.Navigation.PopAsync();
                 });
-            
+
                 return _saveCommand;
             }
         }
@@ -194,9 +177,19 @@ namespace Cigars.ViewModels
             {
                 return new Command(async (t) =>
                 {
-                    if (_smokeModel == null) return;
-                    await App.Database.Delete<Smoke>(_smokeModel.SmokeId);
-                    await App.Current.MainPage.Navigation.PopAsync();
+                    if (SmokeModel == null) return;
+                    ConfirmConfig config = new ConfirmConfig()
+                    {
+                        Message = "Delete this smoke record?",
+                        OkText = "Delete",
+                        CancelText = "Cancel"
+                    };
+                    bool deleteConfirmed = await UserDialogs.Instance.ConfirmAsync(config);
+                    if (deleteConfirmed)
+                    {
+                        await App.Database.Delete<Smoke>(SmokeModel.SmokeId);
+                        await App.Current.MainPage.Navigation.PopAsync();
+                    }
                 });
             }
         }

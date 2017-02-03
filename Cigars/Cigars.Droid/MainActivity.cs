@@ -20,7 +20,7 @@ namespace Cigars.Droid
             base.OnCreate(bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            UserDialogs.Init(() => (Activity) Forms.Context);
+            UserDialogs.Init(this);
 
 
             LoadApplication(new App());
