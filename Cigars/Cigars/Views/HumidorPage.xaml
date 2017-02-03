@@ -2,5 +2,46 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Cigars.Views.HumidorPage">
-  <Label Text="label" VerticalOptions="Center" HorizontalOptions="Center" />
+  <StackLayout Orientation="Vertical">
+    <StackLayout Orientation="Vertical" HeightRequest="50">
+      <Label Text="Add Cigar to Humidor" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Label>
+      <StackLayout.GestureRecognizers>
+        <TapGestureRecognizer
+          Tapped="AddCigarTapped"/>
+      </StackLayout.GestureRecognizers>
+    </StackLayout>
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <ListView
+        x:Name="ListSmokes"
+        ItemsSource="{Binding SmokeCollection}"
+        ItemSelected="OnCigarSelection"
+        ItemTapped="OnCigarTapped">
+        <ListView.Header>
+
+        </ListView.Header>
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <Grid HeightRequest="50">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                  </Grid.ColumnDefinitions>
+                  <Label Text="{Binding Cigar.Name}" Grid.Row="0" Grid.Column="0"></Label>
+                  <Label Text="{Binding DateCreated}" Grid.Row="0" Grid.Column="1"></Label>
+                  <Label Text="{Binding Rating}" Grid.Row="1" Grid.Column="0"></Label>
+                  <Label Text="{Binding Notes}" Grid.Row="1" Grid.Column="1"></Label>
+                </Grid>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </StackLayout>
 </ContentPage>

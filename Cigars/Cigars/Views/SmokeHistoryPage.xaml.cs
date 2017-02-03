@@ -44,26 +44,18 @@ namespace Cigars.Views
 
         protected async void AddSmokeTapped(object sender, EventArgs args)
         {
-            try
-            {
-                await Navigation.PushAsync(new AddSmokePage(new Smoke()));
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            await Navigation.PushAsync(new AddSmokePage(new Smoke()));
         }
 
         protected void OnSmokeSelection(object sender, SelectedItemChangedEventArgs e)
         {
             //disable the ability to select items
-            ((ListView) sender).SelectedItem = null;
+            ((ListView)sender).SelectedItem = null;
         }
 
         protected async void OnSmokeTapped(object sender, ItemTappedEventArgs e)
         {
-            Smoke smoke = (Smoke) e.Item;
+            Smoke smoke = (Smoke)e.Item;
             await Navigation.PushAsync(new AddSmokePage(smoke));
         }
     }
