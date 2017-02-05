@@ -35,7 +35,7 @@
                   <Label Text="{Binding Cigar.Name}" Grid.Row="0" Grid.Column="0"></Label>
                   <Label Text="{Binding DateCreated}" Grid.Row="0" Grid.Column="1"></Label>
                   <Label Text="{Binding Price}" Grid.Row="1" Grid.Column="0"></Label>
-                  <Label Text="{Binding Notes}" Grid.Row="1" Grid.Column="1"></Label>
+                  <Label Text="{Binding PlaceObtained}" Grid.Row="1" Grid.Column="1"></Label>
                 </Grid>
               </ViewCell.View>
             </ViewCell>
