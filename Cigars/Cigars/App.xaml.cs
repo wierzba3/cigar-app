@@ -10,7 +10,9 @@ using Xamarin.Forms;
 /*
     TODO
     - ACR user dialogs plugin crashes on android launch for api 23
-    - start on humidor page, add a listview of humidor entries
+    - humidor page
+        * improve item template
+        * change items from HumidorEntries to grouped humidor entries
 */
 namespace Cigars
 {
@@ -30,7 +32,15 @@ namespace Cigars
 
 
 
-            testDatabaseSetup();
+            try
+            {
+                testDatabaseSetup();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         private static Database.Database database;
@@ -70,17 +80,43 @@ namespace Cigars
         private void testDatabaseSetup()
         {
             int retVal;
-            retVal = Database.DeleteAll<Smoke>().Result;
-            retVal = Database.DeleteAll<Cigar>().Result;
-            Cigar cigar = new Cigar();
-            cigar.Name = "Padron";
-            Cigar cigar2 = new Cigar();
-            cigar2.Name = "Churchill";
-            Cigar cigar3 = new Cigar();
-            cigar3.Name = "Montecristo";
-            retVal = Database.Insert(cigar).Result;
-            retVal = Database.Insert(cigar2).Result;
-            retVal = Database.Insert(cigar3).Result;
+
+
+            //retVal = Database.DeleteAll<Smoke>().Result;
+            //retVal = Database.DeleteAll<Cigar>().Result;
+            //Cigar cigar = new Cigar();
+            //cigar.Name = "Padron";
+            //Cigar cigar2 = new Cigar();
+            //cigar2.Name = "Churchill";
+            //Cigar cigar3 = new Cigar();
+            //cigar3.Name = "Montecristo";
+            //retVal = Database.Insert(cigar).Result;
+            //retVal = Database.Insert(cigar2).Result;
+            //retVal = Database.Insert(cigar3).Result;
+
+            retVal = App.Database.DeleteAll<HumidorEntry>().Result;
+            retVal = App.Database.DeleteAll<Humidor>().Result;
+
+            Humidor humidor = new Humidor();
+            humidor.DateCreated = humidor.DateModified = DateTime.UtcNow;
+            humidor.Name = "Default";
+            retVal = App.Database.Insert<Humidor>(humidor).Result;
+            List<Humidor> humidors = App.Database.GetAll<Humidor>().Result;
+            humidor = humidors[0];
+
+            HumidorEntry entry = new HumidorEntry();
+            entry.DateCreated = entry.DateModified = DateTime.UtcNow;
+            entry.Price = 5.99m;
+            entry.HumidorId = humidors[0].HumidorId;
+            Cigar cigar = App.Database.GetAll<Cigar>().Result[0];
+            entry.Cigar = cigar;
+            App.Database.InsertWithChildren(entry);
+
+            humidor.HumidorEntries = new List<HumidorEntry>{entry};
+            App.Database.UpdateWithChildren(humidor);
+
+            humidors = App.Database.GetAllWithChildren<Humidor>().Result;
+            var humidorEntries = App.Database.GetAllWithChildren<HumidorEntry>().Result;
         }
 
     }

@@ -25,13 +25,13 @@ namespace Cigars.Views
             BindingContext = _vm = App.Locator.SmokeHistory;
             cigars = App.Database.GetAll<Cigar>().Result;
 
-            if (!cigars.Any())
-            {
-                Cigar cigar = new Cigar();
-                cigar.Name = "cigar1";
-                cigars.Add(cigar);
-                App.Database.Insert(cigar);
-            }
+            //if (!cigars.Any())
+            //{
+            //    Cigar cigar = new Cigar();
+            //    cigar.Name = "cigar1";
+            //    cigars.Add(cigar);
+            //    App.Database.Insert(cigar);
+            //}
         }
 
 

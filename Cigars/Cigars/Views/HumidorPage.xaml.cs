@@ -1,19 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cigars.Models;
+using Cigars.ViewModels;
 using Xamarin.Forms;
 
 namespace Cigars.Views
 {
     public partial class HumidorPage : ContentPage
     {
+
+        private HumidorVM _vm;
         public HumidorPage()
         {
+            BindingContext = _vm = App.Locator.Humidor;
             InitializeComponent();
             Title = "Humidor";
+        }
+
+        protected override void OnAppearing()
+        {
+            _vm.HumidorEntryCollection = new ObservableCollection<HumidorEntry>(
+                App.Database.GetAllWithChildren<HumidorEntry>().Result);
+            base.OnAppearing();
         }
 
         protected async void AddCigarTapped(object sender, EventArgs args)

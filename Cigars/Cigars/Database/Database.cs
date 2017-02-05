@@ -28,8 +28,8 @@ namespace Cigars.Database
             db = new SQLiteAsyncConnection(connectionFactory);
             db.CreateTableAsync<Cigar>();
             db.CreateTableAsync<Smoke>();
-            //db.CreateTable<Cigar>();
-            //db.CreateTable<Smoke>();
+            db.CreateTableAsync<HumidorEntry>();
+            db.CreateTableAsync<Humidor>();
         }
 
         public Task<List<T>> GetAll<T>() where T : class, new()
@@ -62,7 +62,10 @@ namespace Cigars.Database
             return db.DeleteAllAsync<T>();
         }
 
-
+        public Task UpdateWithChildren<T>(T val) where T : class, new()
+        {
+            return db.UpdateWithChildrenAsync(val);
+        }
 
 
     }
