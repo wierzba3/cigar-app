@@ -9,10 +9,14 @@ using GalaSoft.MvvmLight.Ioc;
 using Xamarin.Forms;
 /*
     TODO
-    - ACR user dialogs plugin crashes on android launch for api 23
+    
     - humidor page
         * improve item template
         * change items from HumidorEntries to grouped humidor entries
+        * 
+    
+    ISSUES
+    - ACR user dialogs plugin crashes on android launch for api 23
 */
 namespace Cigars
 {

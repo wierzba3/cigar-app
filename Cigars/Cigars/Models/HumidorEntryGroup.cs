@@ -13,5 +13,7 @@ namespace Cigars.Models
 
         public decimal AveragePrice { get; set; }
 
+        public Cigar Cigar { get; set; }
+
     }
 }

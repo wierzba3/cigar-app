@@ -23,8 +23,17 @@ namespace Cigars.Views
 
         protected override void OnAppearing()
         {
-            _vm.HumidorEntryCollection = new ObservableCollection<HumidorEntry>(
-                App.Database.GetAllWithChildren<HumidorEntry>().Result);
+            var groups = App.Database.GetAllWithChildren<HumidorEntry>().Result.GroupBy(entry => entry.CigarId);
+            _vm.HumidorEntryGroupCollection = new ObservableCollection<HumidorEntryGroup>();
+            foreach (IGrouping<int, HumidorEntry> group in groups)
+            {
+                if (!group.Any()) continue;
+                var humidorEntryGroup = new HumidorEntryGroup();
+                humidorEntryGroup.Quantity = group.Count();
+                humidorEntryGroup.Cigar = group.GetEnumerator().Current.Cigar;
+                _vm.HumidorEntryGroupCollection.Add(humidorEntryGroup);
+            }
+            
             base.OnAppearing();
         }
 

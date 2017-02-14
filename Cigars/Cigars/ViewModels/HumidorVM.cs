@@ -19,16 +19,16 @@ namespace Cigars.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        private ObservableCollection<HumidorEntry> _humidorEntryCollection;
-        public ObservableCollection<HumidorEntry> HumidorEntryCollection
+        private ObservableCollection<HumidorEntryGroup> _humidorEntryGroupCollection;
+        public ObservableCollection<HumidorEntryGroup> HumidorEntryGroupCollection
         {
             get
-            { return _humidorEntryCollection; }
+            { return _humidorEntryGroupCollection; }
             set
             {
-                if (value != _humidorEntryCollection)
+                if (value != _humidorEntryGroupCollection)
                 {
-                    _humidorEntryCollection = value;
+                    _humidorEntryGroupCollection = value;
                     PropertyChanged(this, new PropertyChangedEventArgs("HumidorEntryCollection"));
                 }
             }
