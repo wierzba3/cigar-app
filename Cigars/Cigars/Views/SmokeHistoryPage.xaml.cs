@@ -38,8 +38,16 @@ namespace Cigars.Views
 
         protected override void OnAppearing()
         {
-            _vm.SmokeCollection = new ObservableCollection<Smoke>(App.Database.GetAllWithChildren<Smoke>().Result);
-            base.OnAppearing();
+            try
+            {
+                _vm.SmokeCollection = new ObservableCollection<Smoke>(App.Database.GetAllWithChildren<Smoke>().Result);
+                base.OnAppearing();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         protected async void AddSmokeTapped(object sender, EventArgs args)

@@ -20,6 +20,9 @@ namespace Cigars.Views
             _vm.SmokeModel = model;
             InitializeComponent();
             Title = "Add Smoke";
+
+            txtDuration.Text = "20";
+            txtRating.Text = "7";
         }
 
 

@@ -14,12 +14,12 @@
         
       <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,10,0,10">
         <Label Text="Rating" HorizontalOptions="Center" VerticalOptions="Center" />
-        <Entry Keyboard="Numeric" WidthRequest="100" HorizontalOptions="Center" Text="{Binding Rating}" />
+        <Entry Keyboard="Numeric" WidthRequest="100" HorizontalOptions="Center" Text="{Binding Rating}" x:Name="txtRating" />
       </StackLayout>
       
       <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,10,0,10">
         <Label Text="Smoke Duration" VerticalOptions="Center" />
-        <Entry Keyboard="Numeric" WidthRequest="100" Text="{Binding Duration}" />
+        <Entry Keyboard="Numeric" WidthRequest="100" Text="{Binding Duration}" x:Name="txtDuration" />
       </StackLayout>
       
       <StackLayout Orientation="Vertical" Margin="10,10,10,10">

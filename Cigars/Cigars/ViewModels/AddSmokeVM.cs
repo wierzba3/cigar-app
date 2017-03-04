@@ -136,8 +136,6 @@ namespace Cigars.ViewModels
                     }
                     Smoke newSmoke = new Smoke()
                     {
-                        Cigar = SmokeModel.Cigar,
-                        CigarId = SmokeModel.CigarId,
                         Rating = ratingValue,
                         Duration = durationValue,
                         Notes = Notes,
@@ -146,6 +144,8 @@ namespace Cigars.ViewModels
                     };
 
                     await App.Database.InsertWithChildren(newSmoke);
+                    newSmoke.Cigar = SmokeModel.Cigar;
+                    await App.Database.UpdateWithChildren(newSmoke);
 
                     await App.Locator.SmokeHistory.LoadSmokes();
                     await App.Current.MainPage.Navigation.PopAsync();
