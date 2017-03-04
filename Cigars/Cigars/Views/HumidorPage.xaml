@@ -13,7 +13,7 @@
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
       <ListView
         x:Name="ListHumidorEntries"
-        ItemsSource="{Binding HumidorEntryCollection}"
+        ItemsSource="{Binding HumidorEntryGroupCollection}"
         ItemSelected="OnCigarSelection"
         ItemTapped="OnCigarTapped">
         <ListView.Header>
@@ -33,9 +33,9 @@
                     <ColumnDefinition Width="*"/>
                   </Grid.ColumnDefinitions>
                   <Label Text="{Binding Cigar.Name}" Grid.Row="0" Grid.Column="0"></Label>
-                  <Label Text="{Binding DateCreated}" Grid.Row="0" Grid.Column="1"></Label>
-                  <Label Text="{Binding Price}" Grid.Row="1" Grid.Column="0"></Label>
-                  <Label Text="{Binding PlaceObtained}" Grid.Row="1" Grid.Column="1"></Label>
+                  <Label Text="{Binding AveragePrice}" Grid.Row="0" Grid.Column="1"></Label>
+                  <Label Text="{Binding Quantity}" Grid.Row="1" Grid.Column="0"></Label>
+                  <Label Text="label text" Grid.Row="1" Grid.Column="1"></Label>
                 </Grid>
               </ViewCell.View>
             </ViewCell>

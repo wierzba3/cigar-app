@@ -29,7 +29,7 @@ namespace Cigars.ViewModels
                 if (value != _humidorEntryGroupCollection)
                 {
                     _humidorEntryGroupCollection = value;
-                    PropertyChanged(this, new PropertyChangedEventArgs("HumidorEntryCollection"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("HumidorEntryGroupCollection"));
                 }
             }
         }

@@ -86,17 +86,17 @@ namespace Cigars
             int retVal;
 
 
-            //retVal = Database.DeleteAll<Smoke>().Result;
-            //retVal = Database.DeleteAll<Cigar>().Result;
-            //Cigar cigar = new Cigar();
-            //cigar.Name = "Padron";
-            //Cigar cigar2 = new Cigar();
-            //cigar2.Name = "Churchill";
-            //Cigar cigar3 = new Cigar();
-            //cigar3.Name = "Montecristo";
-            //retVal = Database.Insert(cigar).Result;
-            //retVal = Database.Insert(cigar2).Result;
-            //retVal = Database.Insert(cigar3).Result;
+            retVal = Database.DeleteAll<Smoke>().Result;
+            retVal = Database.DeleteAll<Cigar>().Result;
+            Cigar cigar = new Cigar();
+            cigar.Name = "Padron";
+            Cigar cigar2 = new Cigar();
+            cigar2.Name = "Churchill";
+            Cigar cigar3 = new Cigar();
+            cigar3.Name = "Montecristo";
+            retVal = Database.Insert(cigar).Result;
+            retVal = Database.Insert(cigar2).Result;
+            retVal = Database.Insert(cigar3).Result;
 
             retVal = App.Database.DeleteAll<HumidorEntry>().Result;
             retVal = App.Database.DeleteAll<Humidor>().Result;
@@ -112,7 +112,7 @@ namespace Cigars
             entry.DateCreated = entry.DateModified = DateTime.UtcNow;
             entry.Price = 5.99m;
             entry.HumidorId = humidors[0].HumidorId;
-            Cigar cigar = App.Database.GetAll<Cigar>().Result[0];
+            Cigar firstCigar = App.Database.GetAll<Cigar>().Result[0];
             entry.Cigar = cigar;
             App.Database.InsertWithChildren(entry);
 

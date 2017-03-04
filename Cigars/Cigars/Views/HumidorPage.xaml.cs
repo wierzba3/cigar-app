@@ -30,8 +30,12 @@ namespace Cigars.Views
                 if (!group.Any()) continue;
                 var humidorEntryGroup = new HumidorEntryGroup();
                 humidorEntryGroup.Quantity = group.Count();
-                humidorEntryGroup.Cigar = group.GetEnumerator().Current.Cigar;
-                _vm.HumidorEntryGroupCollection.Add(humidorEntryGroup);
+                using (IEnumerator<HumidorEntry> enumerator = group.GetEnumerator())
+                {
+                    enumerator.MoveNext();
+                    humidorEntryGroup.Cigar = enumerator.Current.Cigar;
+                    _vm.HumidorEntryGroupCollection.Add(humidorEntryGroup);
+                }
             }
             
             base.OnAppearing();
