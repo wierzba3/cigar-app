@@ -10,11 +10,29 @@ using Xamarin.Forms;
 /*
     TODO
     
-    - humidor page
-        * improve item template
-        * change items from HumidorEntries to grouped humidor entries
-        * 
-    
+    - AddHumidorEntryPage
+        * add inputs: 
+            - cigar
+            - quantity
+            - place obtained
+            - price (if quantity > 1, display price/ea) 
+              (hold off for now, need to decide on way to handle price for each entry)
+
+    - SmokeHistoryPage
+        * sort option
+        * UI: improve item template
+        * UI: improve "add smoke" layout
+
+    - AddSmokePage
+        * UI: improve it
+
+    - HumidorPage
+        * sort option
+        * UI: improve item template
+        * UI: improve "add cigar" template
+
+
+
     ISSUES
     - ACR user dialogs plugin crashes on android launch for api 23
 */

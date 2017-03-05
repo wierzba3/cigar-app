@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cigars.Views.AddHumidorEntryPage">
+  <!-- left, top, right, buttom-->
+  <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+    <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical">
+    </StackLayout>
+
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="End">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="33*" />
+        <ColumnDefinition Width="33*" />
+        <ColumnDefinition Width="33*" />
+      </Grid.ColumnDefinitions>
+      <Button Text="Save" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Command="{Binding SaveCommand}"/>
+      <Button Text="Cancel" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Command="{Binding CancelCommand}" />
+      <Button Text="Delete" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" Command="{Binding DeleteCommand}" />
+    </Grid>
+    
+  </StackLayout>
+</ContentPage>

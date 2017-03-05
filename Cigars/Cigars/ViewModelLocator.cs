@@ -20,6 +20,7 @@ namespace Cigars
             SimpleIoc.Default.Register<AddSmokeVM>();
             SimpleIoc.Default.Register<ChooseCigarVM>();
             SimpleIoc.Default.Register<HumidorVM>();
+            SimpleIoc.Default.Register<AddHumidorEntryVM>();
         }
 
         public MainVM Main
@@ -57,6 +58,8 @@ namespace Cigars
                 return result;
             }
         }
+
+        public AddHumidorEntryVM AddHumidorEntry => ServiceLocator.Current.GetInstance<AddHumidorEntryVM>();
 
         public HumidorVM Humidor => ServiceLocator.Current.GetInstance<HumidorVM>();
     }
