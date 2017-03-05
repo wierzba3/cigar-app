@@ -41,9 +41,9 @@ namespace Cigars.Views
             base.OnAppearing();
         }
 
-        protected async void AddCigarTapped(object sender, EventArgs args)
+        protected void AddCigarTapped(object sender, EventArgs args)
         {
-            await Navigation.PushAsync(new AddHumidorEntryPage(new HumidorEntryGroup()));
+            Navigation.PushAsync(new AddHumidorEntryPage(new HumidorEntryGroup()));
         }
 
         protected void OnCigarSelection(object sender, SelectedItemChangedEventArgs e)

@@ -13,6 +13,7 @@ using Xamarin.Forms;
     - AddHumidorEntryPage
         * add inputs: 
             - cigar
+              created ChooseCigarView but the Cigar property won't bind to the ViewModel, throws exception
             - quantity
             - place obtained
             - price (if quantity > 1, display price/ea) 

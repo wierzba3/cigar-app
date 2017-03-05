@@ -79,6 +79,9 @@
     <Compile Include="Views\ChooseCigarPage.xaml.cs">
       <DependentUpon>ChooseCigarPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ChooseCigarView.xaml.cs">
+      <DependentUpon>ChooseCigarView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HumidorPage.xaml.cs">
       <DependentUpon>HumidorPage.xaml</DependentUpon>
     </Compile>
@@ -194,6 +197,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\AddHumidorEntryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ChooseCigarView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

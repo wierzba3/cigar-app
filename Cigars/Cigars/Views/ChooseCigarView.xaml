@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cigars.Views.ChooseCigarView">
+  <ContentView.Content>
+    <StackLayout>
+      <Label Text="Cigar" HorizontalOptions="Center" VerticalOptions="Center" />
+      <Button Text="Select" x:Name="btnSelect">
+        <Button.GestureRecognizers>
+          <TapGestureRecognizer
+            Tapped="SelectCigarTapped"/>
+        </Button.GestureRecognizers>
+      </Button>
+      <Label x:Name="txtChosenCigar" />
+    </StackLayout>
+  </ContentView.Content>
+</ContentView>

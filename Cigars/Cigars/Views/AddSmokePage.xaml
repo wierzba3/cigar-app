@@ -38,7 +38,7 @@
         <ColumnDefinition Width="33*" />
       </Grid.ColumnDefinitions>
       <Button Text="Save" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Command="{Binding SaveCommand}"/>
-      <Button Text="Cancel" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Command="{Binding CancelCommand}" />
+      <Button Text="CancelCallback" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Command="{Binding CancelCommand}" />
       <Button Text="Delete" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" Command="{Binding DeleteCommand}" />
     </Grid>
   </StackLayout>

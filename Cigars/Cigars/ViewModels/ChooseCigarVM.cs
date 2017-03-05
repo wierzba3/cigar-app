@@ -17,13 +17,11 @@ namespace Cigars.ViewModels
 
         public ChooseCigarVM()
         {
-            
             //_cigarCollection = new ObservableCollection<Cigar>(App.Database.GetAll<Cigar>().Result);
-
         }
 
-        public EventHandler<CigarChosenEventHandler> CigarChosen;
-        public EventHandler Cancel;
+        public EventHandler<CigarChosenEventHandler> CigarChosenCallback;
+        public EventHandler CancelCallback;
 
         public event PropertyChangedEventHandler PropertyChanged = delegate{};
 
@@ -52,7 +50,7 @@ namespace Cigars.ViewModels
                         Name = "chosen_cigar"
                     };
                     CigarChosenEventHandler e = new CigarChosenEventHandler(cigar);
-                    CigarChosen(this, e);
+                    CigarChosenCallback(this, e);
                 });
                 return _chooseCigarCommand;
                 

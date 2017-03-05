@@ -15,12 +15,12 @@ namespace Cigars.Views
 
         private ChooseCigarVM _vm;
 
-        public ChooseCigarPage(EventHandler<CigarChosenEventHandler> cigarChosenArg, EventHandler cancelArg)
+        public ChooseCigarPage(EventHandler<CigarChosenEventHandler> cigarChosenCallbackArg, EventHandler cancelCallbackArg)
         {
             InitializeComponent();
             BindingContext = _vm = App.Locator.ChooseCigar;
-            _vm.CigarChosen = cigarChosenArg;
-            _vm.Cancel = cancelArg;
+            _vm.CigarChosenCallback = cigarChosenCallbackArg;
+            _vm.CancelCallback = cancelCallbackArg;
             sbSearch.TextChanged += FilterContacts;
             _allCigars = App.Database.GetAll<Cigar>().Result;
             lvCigars.ItemsSource = _allCigars;
@@ -38,7 +38,7 @@ namespace Cigars.Views
         {
             Cigar chosenCigar = (Cigar) e.Item;
             CigarChosenEventHandler cigarEvent = new CigarChosenEventHandler(chosenCigar);
-            _vm.CigarChosen(this, cigarEvent);
+            _vm.CigarChosenCallback(this, cigarEvent);
         }
 
         private async void FilterContacts(object sender, TextChangedEventArgs e)
