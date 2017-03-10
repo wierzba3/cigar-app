@@ -15,9 +15,25 @@ namespace Cigars.Views
         public ChooseCigarView()
         {
             InitializeComponent();
+            btnSelect.Clicked += SelectCigarTapped;
         }
 
-        public Cigar Cigar { get; set; }
+        public Cigar Cigar
+        {
+            get
+            {
+                Cigar result = (Cigar) GetValue(CigarProperty);
+                return result;
+            }
+            set
+            {
+                SetValue(CigarProperty, value);
+            }
+
+        }
+
+        public static readonly BindableProperty CigarProperty =
+            BindableProperty.Create(nameof(Cigar), typeof(Cigar), typeof(ChooseCigarView));
 
         protected void SelectCigarTapped(object sender, EventArgs args)
         {
@@ -29,6 +45,7 @@ namespace Cigars.Views
             if (e.CigarObject == null) return;
             Cigar = e.CigarObject;
             txtChosenCigar.Text = Cigar.Name;
+            Navigation.PopAsync();
         }
 
         private void HandleChooseCigarCancel(object sender, EventArgs e)
