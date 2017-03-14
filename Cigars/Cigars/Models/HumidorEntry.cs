@@ -11,7 +11,7 @@ namespace Cigars.Models
     public class HumidorEntry
     {
 
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int HumidorEntryId { get; set; }
 
         [ForeignKey(typeof(Cigar))]

@@ -19,6 +19,8 @@ namespace Cigars.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
+        public Humidor HumidorModel { get; set; }
+
         private ObservableCollection<HumidorEntryGroup> _humidorEntryGroupCollection;
         public ObservableCollection<HumidorEntryGroup> HumidorEntryGroupCollection
         {

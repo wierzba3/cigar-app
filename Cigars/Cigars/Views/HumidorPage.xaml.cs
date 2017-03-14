@@ -23,7 +23,16 @@ namespace Cigars.Views
 
         protected override void OnAppearing()
         {
-            var groups = App.Database.GetAllWithChildren<HumidorEntry>().Result.GroupBy(entry => entry.CigarId);
+            var humidors = App.Database.GetAll<Humidor>().Result;
+            if(!humidors.Any()) throw new InvalidOperationException();
+
+            //TODO make this page tabbed for multiple humidors
+            int humidorId = humidors[0].HumidorId;
+            _vm.HumidorModel = humidors[0];
+
+            var groups = App.Database.GetAllWithChildren<HumidorEntry>(h => h.HumidorId == humidorId)
+                .Result.GroupBy(entry => entry.CigarId);
+
             _vm.HumidorEntryGroupCollection = new ObservableCollection<HumidorEntryGroup>();
             foreach (IGrouping<int, HumidorEntry> group in groups)
             {
@@ -43,7 +52,9 @@ namespace Cigars.Views
 
         protected void AddCigarTapped(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new AddHumidorEntryPage(new HumidorEntryGroup()));
+            var humidorEntryGroup = new HumidorEntryGroup() { IsNew = true };
+            humidorEntryGroup.HumidorId = _vm.HumidorModel.HumidorId;
+            Navigation.PushAsync(new AddHumidorEntryPage(humidorEntryGroup));
         }
 
         protected void OnCigarSelection(object sender, SelectedItemChangedEventArgs e)

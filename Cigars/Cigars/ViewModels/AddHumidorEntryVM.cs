@@ -22,15 +22,24 @@ namespace Cigars.ViewModels
 
         public HumidorEntryGroup HumidorEntryGroupModel { get; set; }
 
-        private Cigar _chosenCigar;
 
         public Cigar ChosenCigar
         {
-            get { return _chosenCigar; }
+            get { return HumidorEntryGroupModel.Cigar; }
             set
             {
-                _chosenCigar = value;
+                HumidorEntryGroupModel.Cigar = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("ChosenCigar"));
+            }
+        }
+
+        public string Quantity
+        {
+            get { return HumidorEntryGroupModel.Quantity.ToString(); }
+            set
+            {
+                HumidorEntryGroupModel.Quantity = string.IsNullOrEmpty(value) ? 0 : int.Parse(value);
+                PropertyChanged(this, new PropertyChangedEventArgs("Quantity"));
             }
         }
 
@@ -42,7 +51,26 @@ namespace Cigars.ViewModels
             {
                 _saveCommand = new Command(async (t) =>
                 {
-                    var cigar = ChosenCigar;
+                    try
+                    {
+                        if (HumidorEntryGroupModel.IsNew)
+                        {
+                            for (int i = 0; i < HumidorEntryGroupModel.Quantity; i++)
+                            {
+                                HumidorEntry entry = new HumidorEntry();
+                                entry.CigarId = HumidorEntryGroupModel.Cigar.CigarId;
+                                entry.DateCreated = DateTime.UtcNow;
+                                entry.DateModified = DateTime.UtcNow;
+                                entry.HumidorId = HumidorEntryGroupModel.HumidorId;
+                                await App.Database.Insert(entry);
+                            }
+                        }
+                        await App.Current.MainPage.Navigation.PopAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        var msg = ex.Message;
+                    }
                 });
                 return _saveCommand;
             }

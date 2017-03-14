@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Cigars.Models;
@@ -37,9 +38,9 @@ namespace Cigars.Database
             return db.Table<T>().ToListAsync();
         }
 
-        public Task<List<T>> GetAllWithChildren<T>() where T : class, new()
+        public Task<List<T>> GetAllWithChildren<T>(Expression<Func<T, bool>> filter = null) where T : class, new()
         {
-            return db.GetAllWithChildrenAsync<T>();
+            return db.GetAllWithChildrenAsync(filter);
         }
 
         public Task<int> Insert<T>(T val) where T: class, new()

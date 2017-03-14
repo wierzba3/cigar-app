@@ -12,10 +12,10 @@ using Xamarin.Forms;
     
     - AddHumidorEntryPage
         * add inputs: 
-            - cigar
-              created ChooseCigarView but the Cigar property won't bind to the ViewModel, throws exception
+            - cigar DONE
             - quantity
             - place obtained
+              (hold off for now, need to decide on way to place obtained for each entry)
             - price (if quantity > 1, display price/ea) 
               (hold off for now, need to decide on way to handle price for each entry)
 
@@ -132,8 +132,9 @@ namespace Cigars
             entry.Price = 5.99m;
             entry.HumidorId = humidors[0].HumidorId;
             Cigar firstCigar = App.Database.GetAll<Cigar>().Result[0];
-            entry.Cigar = cigar;
-            App.Database.InsertWithChildren(entry);
+            
+            entry.CigarId = cigar.CigarId;
+            App.Database.Insert(entry);
 
             humidor.HumidorEntries = new List<HumidorEntry>{entry};
             App.Database.UpdateWithChildren(humidor);

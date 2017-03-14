@@ -7,7 +7,11 @@
   <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
     <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical">
-      <views:ChooseCigarView Cigar="{Binding ChosenCigar}"  x:Name="chooseCigarView" />
+      <views:ChooseCigarView Cigar="{Binding ChosenCigar, Mode=TwoWay}"  x:Name="chooseCigarView" />
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Quantity" />
+        <Entry Keyboard="Numeric" WidthRequest="100" HorizontalOptions="Center" Text="{Binding Quantity}" x:Name="txtQuantity" />
+      </StackLayout>
     </StackLayout>
 
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="End">

@@ -12,7 +12,7 @@ namespace Cigars.Models
     public class Humidor
     {
 
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int HumidorId { get; set; }
 
         public string Name { get; set; }
@@ -23,6 +23,8 @@ namespace Cigars.Models
 
         [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<HumidorEntry> HumidorEntries { get; set; }
+
+        
 
     }
 }
