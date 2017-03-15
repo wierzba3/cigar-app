@@ -31,6 +31,8 @@ namespace Cigars.Database
             db.CreateTableAsync<Smoke>();
             db.CreateTableAsync<HumidorEntry>();
             db.CreateTableAsync<Humidor>();
+            db.CreateTableAsync<PriceEntry>();
+            db.CreateTableAsync<PlaceObtainedEntry>();
         }
 
         public Task<List<T>> GetAll<T>() where T : class, new()

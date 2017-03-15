@@ -57,6 +57,8 @@
     <Compile Include="Models\Humidor.cs" />
     <Compile Include="Models\HumidorEntry.cs" />
     <Compile Include="Models\HumidorEntryGroup.cs" />
+    <Compile Include="Models\PlaceObtainedEntry.cs" />
+    <Compile Include="Models\PriceEntry.cs" />
     <Compile Include="Models\Shape.cs" />
     <Compile Include="Models\Smoke.cs" />
     <Compile Include="Models\Strength.cs" />
