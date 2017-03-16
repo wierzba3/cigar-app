@@ -25,16 +25,31 @@ namespace Cigars.Views
             BindingContext = _vm = App.Locator.SmokeHistory;
             cigars = App.Database.GetAll<Cigar>().Result;
 
-            //if (!cigars.Any())
-            //{
-            //    Cigar cigar = new Cigar();
-            //    cigar.Name = "cigar1";
-            //    cigars.Add(cigar);
-            //    App.Database.Insert(cigar);
-            //}
+            foreach (string sortName in SORT_PICKER_ITEMS.Keys)
+            {
+                pckSortBy.Items.Add(sortName);
+            }
+            pckSortBy.SelectedIndex = 0;
         }
 
+        enum SortOption
+        {
+            Latest = 1,
+            Earliest = 2,
+            Rating = 3,
+            CigarNameAsc = 4,
+            CigarNameDesc = 5
+        }
 
+        private static readonly Dictionary<string, SortOption> SORT_PICKER_ITEMS
+            = new Dictionary<string, SortOption>()
+            {
+                { "Most Recent", SortOption.Latest },
+                { "Earliest", SortOption.Earliest },
+                { "Rating", SortOption.Rating },
+                { "Cigar Name A -> Z", SortOption.CigarNameAsc },
+                { "Cigar Name Z -> A", SortOption.CigarNameDesc }
+            };
 
         protected override void OnAppearing()
         {

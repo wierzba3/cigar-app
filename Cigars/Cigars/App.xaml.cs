@@ -21,6 +21,7 @@ using Xamarin.Forms;
 
     - SmokeHistoryPage
         * sort option
+            - ISSUE: Can't get picker to size according to items
         * UI: improve item template
         * UI: improve "add smoke" layout
 

@@ -1,15 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Cigars.Controls;assembly=Cigars"
              x:Class="Cigars.Views.SmokeHistoryPage">
   <StackLayout Orientation="Vertical">
-    <StackLayout Orientation="Vertical" HeightRequest="50">
+    
+    <StackLayout HeightRequest="50">
       <Label Text="Add Smoke" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Label>
       <StackLayout.GestureRecognizers>
         <TapGestureRecognizer
           Tapped="AddSmokeTapped"/>
       </StackLayout.GestureRecognizers>
     </StackLayout>
+    
+    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+        <controls:MyPicker x:Name="pckSortBy" HorizontalOptions="Fill" WidthRequest="100" />
+    </StackLayout>
+    
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
       <ListView 
         x:Name="ListSmokes" 

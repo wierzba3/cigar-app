@@ -45,6 +45,7 @@
     </Compile>
     <Compile Include="Common\CigarChosenEventHandler.cs" />
     <Compile Include="Common\Common.cs" />
+    <Compile Include="Controls\MyPicker.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\IFileHelper.cs" />
     <Compile Include="Database\ISQLitePlatformInstance.cs" />

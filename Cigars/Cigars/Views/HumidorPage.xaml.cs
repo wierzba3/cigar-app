@@ -21,6 +21,8 @@ namespace Cigars.Views
             Title = "Humidor";
         }
 
+
+
         protected override void OnAppearing()
         {
             var humidors = App.Database.GetAll<Humidor>().Result;
