@@ -13,25 +13,22 @@ using Xamarin.Forms;
     - AddHumidorEntryPage
         * add inputs: 
             - cigar DONE
-            - quantity
-            - place obtained
-              (hold off for now, need to decide on way to place obtained for each entry)
-            - price (if quantity > 1, display price/ea) 
-              (hold off for now, need to decide on way to handle price for each entry)
+            - quantity DONE
+            - place obtained DONE
+            - price DONE
+        * UI: create design
 
     - SmokeHistoryPage
         * sort option
-            - ISSUE: Can't get picker to size according to items
-        * UI: improve item template
-        * UI: improve "add smoke" layout
+            - ISSUE: Find a way to sort SmokeCollection without reallocating
+        * UI: create design
 
     - AddSmokePage
-        * UI: improve it
+        * UI: create design
 
     - HumidorPage
         * sort option
-        * UI: improve item template
-        * UI: improve "add cigar" template
+        * UI: create design
 
 
 
@@ -132,16 +129,30 @@ namespace Cigars
             entry.DateCreated = entry.DateModified = DateTime.UtcNow;
             entry.Price = 5.99m;
             entry.HumidorId = humidors[0].HumidorId;
-            Cigar firstCigar = App.Database.GetAll<Cigar>().Result[0];
-            
+            var cigars = App.Database.GetAll<Cigar>().Result;
+            Cigar firstCigar = cigars[0];
             entry.CigarId = cigar.CigarId;
             App.Database.Insert(entry);
 
-            humidor.HumidorEntries = new List<HumidorEntry>{entry};
+            humidor.HumidorEntries = new List<HumidorEntry> { entry };
             App.Database.UpdateWithChildren(humidor);
 
             humidors = App.Database.GetAllWithChildren<Humidor>().Result;
             var humidorEntries = App.Database.GetAllWithChildren<HumidorEntry>().Result;
+
+            for (int i = 0; i < 10; i++)
+            {
+                Smoke smoke = new Smoke()
+                {
+                    CigarId = cigars[i % 3].CigarId,
+                    DateCreated = DateTime.UtcNow,
+                    DateModified = DateTime.UtcNow,
+                    Duration = 10 * (i % 3),
+                    Notes = "pretty good",
+                    Rating = 5 + (i % 3)
+                };
+                App.Database.Insert(smoke);
+            }
         }
 
     }

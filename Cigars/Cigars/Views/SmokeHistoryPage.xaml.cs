@@ -51,18 +51,37 @@ namespace Cigars.Views
                 { "Cigar Name Z -> A", SortOption.CigarNameDesc }
             };
 
+        protected void OnSortOptionChanged(object sender, EventArgs e)
+        {
+            string selection = pckSortBy.Items[pckSortBy.SelectedIndex];
+            SortOption opt = SORT_PICKER_ITEMS[selection];
+
+            //TODO sort based on chosen option. ObservableCollection doesn't appear to have sort functionality?
+            //TODO sorting desc not working (by reversing string arguments s2.compareto(s1) instead of s1.compareto(s2)
+            List<Smoke> sorted;
+            switch (opt)
+            {
+                case SortOption.CigarNameAsc:
+                    sorted = _vm.SmokeCollection.ToList();
+                    sorted.Sort(
+                        (s1, s2) => s1.Cigar.Name.CompareTo(s2.Cigar.Name)
+                    ); 
+                    _vm.SmokeCollection = new ObservableCollection<Smoke>(sorted);                   
+                    break;
+                case SortOption.CigarNameDesc:
+                    sorted = _vm.SmokeCollection.ToList();
+                    sorted.Sort(
+                        (s1, s2) => s2.Cigar.Name.CompareTo(s1.Cigar.Name)
+                    );
+                    _vm.SmokeCollection = new ObservableCollection<Smoke>(sorted);
+                    break;
+            }
+        }
+
         protected override void OnAppearing()
         {
-            try
-            {
-                _vm.SmokeCollection = new ObservableCollection<Smoke>(App.Database.GetAllWithChildren<Smoke>().Result);
-                base.OnAppearing();
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            _vm.SmokeCollection = new ObservableCollection<Smoke>(App.Database.GetAllWithChildren<Smoke>().Result);
+            base.OnAppearing();
         }
 
         protected async void AddSmokeTapped(object sender, EventArgs args)

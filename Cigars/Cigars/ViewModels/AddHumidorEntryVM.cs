@@ -69,13 +69,13 @@ namespace Cigars.ViewModels
             }
         }
 
-        private ICommand _saveCommand;
+        private ICommand _addCommand;
 
-        public ICommand SaveCommand
+        public ICommand AddCommand
         {
             get
             {
-                _saveCommand = new Command(async (t) =>
+                _addCommand = new Command(async (t) =>
                 {
                     try
                     {
@@ -125,9 +125,10 @@ namespace Cigars.ViewModels
                     catch (Exception ex)
                     {
                         var msg = ex.Message;
+                        throw;
                     }
                 });
-                return _saveCommand;
+                return _addCommand;
             }
         }
     }

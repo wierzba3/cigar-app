@@ -13,8 +13,9 @@
       </StackLayout.GestureRecognizers>
     </StackLayout>
     
-    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-        <controls:MyPicker x:Name="pckSortBy" HorizontalOptions="Fill" WidthRequest="100" />
+    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+      <Label Text="Sort by" VerticalOptions="Center" Margin="20,0,20,0" />
+      <controls:MyPicker x:Name="pckSortBy" HorizontalOptions="FillAndExpand" WidthRequest="100" Margin="0,0,20,0" SelectedIndexChanged="OnSortOptionChanged" />
     </StackLayout>
     
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

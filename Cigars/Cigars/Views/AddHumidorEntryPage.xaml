@@ -14,7 +14,7 @@
       </StackLayout>
       <StackLayout Orientation="Horizontal">
         <Label Text="Price" />
-        <Entry Keyboard="Numeric" WidthRequest="100" HorizontalOptions="Center" Text="{Binding Price}" />
+        <Entry Keyboard="Numeric" WidthRequest="100" HorizontalOptions="Center" Text="{Binding Price }" />
       </StackLayout>
       <StackLayout Orientation="Horizontal">
         <Label Text="Place Obtained" />
@@ -30,7 +30,7 @@
         <ColumnDefinition Width="50*" />
         <ColumnDefinition Width="50*" />
       </Grid.ColumnDefinitions>
-      <Button Text="Save" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Command="{Binding SaveCommand}"/>
+      <Button Text="Add" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Command="{Binding AddCommand}"/>
       <Button Text="Cancel" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Command="{Binding CancelCommand}" />
     </Grid>
     
