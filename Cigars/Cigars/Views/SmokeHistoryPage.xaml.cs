@@ -53,35 +53,53 @@ namespace Cigars.Views
 
         protected void OnSortOptionChanged(object sender, EventArgs e)
         {
-            string selection = pckSortBy.Items[pckSortBy.SelectedIndex];
-            SortOption opt = SORT_PICKER_ITEMS[selection];
-
-            //TODO sort based on chosen option. ObservableCollection doesn't appear to have sort functionality?
-            //TODO sorting desc not working (by reversing string arguments s2.compareto(s1) instead of s1.compareto(s2)
-            List<Smoke> sorted;
-            switch (opt)
-            {
-                case SortOption.CigarNameAsc:
-                    sorted = _vm.SmokeCollection.ToList();
-                    sorted.Sort(
-                        (s1, s2) => s1.Cigar.Name.CompareTo(s2.Cigar.Name)
-                    ); 
-                    _vm.SmokeCollection = new ObservableCollection<Smoke>(sorted);                   
-                    break;
-                case SortOption.CigarNameDesc:
-                    sorted = _vm.SmokeCollection.ToList();
-                    sorted.Sort(
-                        (s1, s2) => s2.Cigar.Name.CompareTo(s1.Cigar.Name)
-                    );
-                    _vm.SmokeCollection = new ObservableCollection<Smoke>(sorted);
-                    break;
-            }
+            if (_vm.SmokeCollection == null || !_vm.SmokeCollection.Any()) return;
+            SortSmokes(_vm.SmokeCollection.ToList());
         }
 
         protected override void OnAppearing()
         {
-            _vm.SmokeCollection = new ObservableCollection<Smoke>(App.Database.GetAllWithChildren<Smoke>().Result);
+            SortSmokes(App.Database.GetAllWithChildren<Smoke>().Result);
             base.OnAppearing();
+        }
+
+        private void SortSmokes(List<Smoke> smokes)
+        {
+            string selection = pckSortBy.Items[pckSortBy.SelectedIndex];
+            SortOption opt = SORT_PICKER_ITEMS[selection];
+            switch (opt)
+            {
+                case SortOption.CigarNameAsc:
+                    smokes.Sort(
+                        (s1, s2) => s1.Cigar.Name.CompareTo(s2.Cigar.Name)
+                    );
+                    _vm.SmokeCollection = new ObservableCollection<Smoke>(smokes);
+                    break;
+                case SortOption.CigarNameDesc:
+                    smokes.Sort(
+                        (s1, s2) => s2.Cigar.Name.CompareTo(s1.Cigar.Name)
+                    );
+                    _vm.SmokeCollection = new ObservableCollection<Smoke>(smokes);
+                    break;
+                case SortOption.Earliest:
+                    smokes.Sort(
+                        (s1, s2) => s1.DateCreated.CompareTo(s2.DateCreated)
+                    );
+                    _vm.SmokeCollection = new ObservableCollection<Smoke>(smokes);
+                    break;
+                case SortOption.Latest:
+                    smokes.Sort(
+                        (s1, s2) => s2.DateCreated.CompareTo(s1.DateCreated)
+                    );
+                    _vm.SmokeCollection = new ObservableCollection<Smoke>(smokes);
+                    break;
+                case SortOption.Rating:
+                    smokes.Sort(
+                        (s1, s2) => s2.Rating.CompareTo(s1.Rating)
+                    );
+                    _vm.SmokeCollection = new ObservableCollection<Smoke>(smokes);
+                    break;
+            }
         }
 
         protected async void AddSmokeTapped(object sender, EventArgs args)

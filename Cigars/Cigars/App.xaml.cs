@@ -145,7 +145,7 @@ namespace Cigars
                 Smoke smoke = new Smoke()
                 {
                     CigarId = cigars[i % 3].CigarId,
-                    DateCreated = DateTime.UtcNow,
+                    DateCreated = DateTime.UtcNow.AddHours(i % 3),
                     DateModified = DateTime.UtcNow,
                     Duration = 10 * (i % 3),
                     Notes = "pretty good",

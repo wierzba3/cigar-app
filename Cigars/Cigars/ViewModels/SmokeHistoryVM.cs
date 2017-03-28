@@ -21,7 +21,9 @@ namespace Cigars.ViewModels
 
         public async Task LoadSmokes()
         {
-            SmokeCollection = new ObservableCollection<Smoke>(await App.Database.GetAll<Smoke>());
+            List<Smoke> smokes = await App.Database.GetAll<Smoke>();
+            smokes.Sort((s1,s2) => s2.DateCreated.CompareTo(s1.DateCreated));
+            SmokeCollection = new ObservableCollection<Smoke>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
