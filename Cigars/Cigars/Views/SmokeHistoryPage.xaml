@@ -4,7 +4,7 @@
              xmlns:controls="clr-namespace:Cigars.Controls;assembly=Cigars"
              x:Class="Cigars.Views.SmokeHistoryPage">
   <StackLayout Orientation="Vertical">
-    
+
     <StackLayout HeightRequest="50">
       <Label Text="Add Smoke" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Label>
       <StackLayout.GestureRecognizers>
@@ -12,16 +12,16 @@
           Tapped="AddSmokeTapped"/>
       </StackLayout.GestureRecognizers>
     </StackLayout>
-    
+
     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
       <Label Text="Sort by" VerticalOptions="Center" Margin="20,0,20,0" />
       <controls:MyPicker x:Name="pckSortBy" HorizontalOptions="FillAndExpand" WidthRequest="100" Margin="0,0,20,0" SelectedIndexChanged="OnSortOptionChanged" />
     </StackLayout>
-    
+
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-      <ListView 
-        x:Name="ListSmokes" 
-        ItemsSource="{Binding SmokeCollection}" 
+      <ListView
+        x:Name="ListSmokes"
+        ItemsSource="{Binding SmokeCollection}"
         ItemSelected="OnSmokeSelection"
         ItemTapped="OnSmokeTapped">
         <ListView.Header>

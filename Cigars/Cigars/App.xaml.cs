@@ -12,15 +12,9 @@ using Xamarin.Forms;
     
     - AddHumidorEntryPage
         * add inputs: 
-            - cigar DONE
-            - quantity DONE
-            - place obtained DONE
-            - price DONE
         * UI: create design
 
     - SmokeHistoryPage
-        * sort option
-            - ISSUE: Find a way to sort SmokeCollection without reallocating
         * UI: create design
 
     - AddSmokePage
@@ -124,18 +118,22 @@ namespace Cigars
             retVal = App.Database.Insert<Humidor>(humidor).Result;
             List<Humidor> humidors = App.Database.GetAll<Humidor>().Result;
             humidor = humidors[0];
-
-            HumidorEntry entry = new HumidorEntry();
-            entry.DateCreated = entry.DateModified = DateTime.UtcNow;
-            entry.Price = 5.99m;
-            entry.HumidorId = humidors[0].HumidorId;
             var cigars = App.Database.GetAll<Cigar>().Result;
-            Cigar firstCigar = cigars[0];
-            entry.CigarId = cigar.CigarId;
-            App.Database.Insert(entry);
-
-            humidor.HumidorEntries = new List<HumidorEntry> { entry };
+            humidor.HumidorEntries = new List<HumidorEntry>();
+            for (int i = 0; i < 20; i++)
+            {
+                HumidorEntry entry = new HumidorEntry();
+                entry.DateCreated = entry.DateModified = DateTime.UtcNow.AddHours(i % 10);
+                entry.Price = i % 10;
+                entry.HumidorId = humidors[0].HumidorId;
+                
+                Cigar cigar4 = cigars[i % 3];
+                entry.CigarId = cigar4.CigarId;
+                App.Database.Insert(entry);
+                humidor.HumidorEntries.Add(entry);
+            }
             App.Database.UpdateWithChildren(humidor);
+
 
             humidors = App.Database.GetAllWithChildren<Humidor>().Result;
             var humidorEntries = App.Database.GetAllWithChildren<HumidorEntry>().Result;

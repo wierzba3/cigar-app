@@ -14,7 +14,7 @@ namespace Cigars.Views
     {
         //a copy of the reference to the VM to avoid having to cast the BindingContext
 
-        private List<Cigar> cigars;
+        //private List<Cigar> cigars;
 
         private SmokeHistoryVM _vm;
 
@@ -23,7 +23,7 @@ namespace Cigars.Views
             InitializeComponent();
             Title = "Smokes";
             BindingContext = _vm = App.Locator.SmokeHistory;
-            cigars = App.Database.GetAll<Cigar>().Result;
+            //cigars = App.Database.GetAll<Cigar>().Result;
 
             foreach (string sortName in SORT_PICKER_ITEMS.Keys)
             {
@@ -59,8 +59,8 @@ namespace Cigars.Views
 
         protected override void OnAppearing()
         {
-            SortSmokes(App.Database.GetAllWithChildren<Smoke>().Result);
             base.OnAppearing();
+            SortSmokes(App.Database.GetAllWithChildren<Smoke>().Result);
         }
 
         private void SortSmokes(List<Smoke> smokes)

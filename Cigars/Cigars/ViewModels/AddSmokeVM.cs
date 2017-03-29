@@ -182,7 +182,7 @@ namespace Cigars.ViewModels
                     {
                         Message = "Delete this smoke record?",
                         OkText = "Delete",
-                        CancelText = "CancelCallback"
+                        CancelText = "Cancel"
                     };
                     bool deleteConfirmed = await UserDialogs.Instance.ConfirmAsync(config);
                     if (deleteConfirmed)
