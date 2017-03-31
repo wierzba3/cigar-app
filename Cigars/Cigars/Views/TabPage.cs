@@ -14,6 +14,7 @@ namespace Cigars.Views
         {
             Children.Add(new SmokeHistoryPage());
             Children.Add(new HumidorPage());
+            Children.Add(new OverflowPage());
         }
 
     }

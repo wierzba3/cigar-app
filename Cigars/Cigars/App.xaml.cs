@@ -9,9 +9,14 @@ using GalaSoft.MvvmLight.Ioc;
 using Xamarin.Forms;
 /*
     TODO
+
+    - Aggregate feedback from reddit thread to a list of features 
+
+    - "Other" overflow page
+        * create it
+        * add tools to it
     
     - AddHumidorEntryPage
-        * add inputs: 
         * UI: create design
 
     - SmokeHistoryPage
@@ -21,7 +26,7 @@ using Xamarin.Forms;
         * UI: create design
 
     - HumidorPage
-        * sort option
+        * multiple humidors
         * UI: create design
 
 

@@ -21,6 +21,7 @@ namespace Cigars
             SimpleIoc.Default.Register<ChooseCigarVM>();
             SimpleIoc.Default.Register<HumidorVM>();
             SimpleIoc.Default.Register<AddHumidorEntryVM>();
+            SimpleIoc.Default.Register<OverflowVM>();
         }
 
         public MainVM Main
@@ -32,35 +33,16 @@ namespace Cigars
             }
         }
 
-        public SmokeHistoryVM SmokeHistory
-        {
-            get
-            {
-                SmokeHistoryVM result = ServiceLocator.Current.GetInstance<SmokeHistoryVM>();
-                return result;
-            }
-        }
+        public SmokeHistoryVM SmokeHistory => ServiceLocator.Current.GetInstance<SmokeHistoryVM>();
 
-        public AddSmokeVM AddSmoke
-        {
-            get
-            {
-                AddSmokeVM result = ServiceLocator.Current.GetInstance<AddSmokeVM>();
-                return result;
-            }
-        }
+        public AddSmokeVM AddSmoke => ServiceLocator.Current.GetInstance<AddSmokeVM>();
 
-        public ChooseCigarVM ChooseCigar
-        {
-            get
-            {
-                ChooseCigarVM result = ServiceLocator.Current.GetInstance<ChooseCigarVM>();
-                return result;
-            }
-        }
+        public ChooseCigarVM ChooseCigar => ServiceLocator.Current.GetInstance<ChooseCigarVM>();
 
         public AddHumidorEntryVM AddHumidorEntry => ServiceLocator.Current.GetInstance<AddHumidorEntryVM>();
 
         public HumidorVM Humidor => ServiceLocator.Current.GetInstance<HumidorVM>();
+
+        public OverflowVM Overflow => ServiceLocator.Current.GetInstance<OverflowVM>();
     }
 }
