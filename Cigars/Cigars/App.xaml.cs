@@ -29,7 +29,17 @@ using Xamarin.Forms;
         * multiple humidors
         * UI: create design
 
-
+    User Suggestions:
+    - "Recommended pairings"
+    - "Flavor wheel"
+    - Multiple humidors
+    - Online retailer integration
+    - Option to suggest a cigar
+    - Barcode scanner / OCR
+    - Search for cigar (based on color, company, flavor)
+    - Counter of how many times you've smoked a cigar (show this on the cigar detail page)
+    - Online reivew/rating of cigars
+    - Cloud backup
 
     ISSUES
     - ACR user dialogs plugin crashes on android launch for api 23
