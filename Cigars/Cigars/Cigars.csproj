@@ -70,6 +70,7 @@
     <Compile Include="ViewModels\AddHumidorEntryVM.cs" />
     <Compile Include="ViewModels\AddSmokeVM.cs" />
     <Compile Include="ViewModels\ChooseCigarVM.cs" />
+    <Compile Include="ViewModels\CigarDetailVM.cs" />
     <Compile Include="ViewModels\HumidorVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\OverflowVM.cs" />
@@ -85,6 +86,9 @@
     </Compile>
     <Compile Include="Views\ChooseCigarView.xaml.cs">
       <DependentUpon>ChooseCigarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CigarDetailPage.xaml.cs">
+      <DependentUpon>CigarDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HumidorPage.xaml.cs">
       <DependentUpon>HumidorPage.xaml</DependentUpon>
@@ -216,6 +220,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\OverflowPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CigarDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -22,6 +22,7 @@ namespace Cigars
             SimpleIoc.Default.Register<HumidorVM>();
             SimpleIoc.Default.Register<AddHumidorEntryVM>();
             SimpleIoc.Default.Register<OverflowVM>();
+            SimpleIoc.Default.Register<CigarDetailVM>();
         }
 
         public MainVM Main
@@ -44,5 +45,7 @@ namespace Cigars
         public HumidorVM Humidor => ServiceLocator.Current.GetInstance<HumidorVM>();
 
         public OverflowVM Overflow => ServiceLocator.Current.GetInstance<OverflowVM>();
+
+        public CigarDetailVM CigarDetail => ServiceLocator.Current.GetInstance<CigarDetailVM>();
     }
 }

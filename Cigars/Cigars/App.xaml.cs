@@ -29,7 +29,10 @@ using Xamarin.Forms;
         * multiple humidors
         * UI: create design
 
-    User Suggestions:
+    MVP:
+    - 
+
+    All User Suggestions:
     - "Recommended pairings"
     - "Flavor wheel"
     - Multiple humidors
