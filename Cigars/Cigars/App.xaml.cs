@@ -9,25 +9,29 @@ using GalaSoft.MvvmLight.Ioc;
 using Xamarin.Forms;
 /*
     TODO
-
-    - Aggregate feedback from reddit thread to a list of features 
+    - Pre-load cigar data into db 
+      (Decide on whether to store it in a normalized format with multiple types, or flat and denormalized
 
     - "Other" overflow page
-        * create it
         * add tools to it
+            - browse cigars (DONE)
     
-    - AddHumidorEntryPage
-        * UI: create design
-
-    - SmokeHistoryPage
-        * UI: create design
-
-    - AddSmokePage
-        * UI: create design
-
+    - CigarDetailPage
+        * Put cigar details on the page
+        
     - HumidorPage
         * multiple humidors
         * UI: create design
+        * 
+    - AddHumidorEntryPage
+        * UI: create design
+        * 
+    - SmokeHistoryPage
+        * UI: create design
+        * 
+    - AddSmokePage
+        * UI: create design
+    
 
     MVP:
     - 
