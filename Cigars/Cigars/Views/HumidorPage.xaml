@@ -1,55 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:Cigars.Controls;assembly=Cigars"
-             x:Class="Cigars.Views.HumidorPage">
-  <StackLayout Orientation="Vertical">
-    
-    <StackLayout HeightRequest="50">
-      <Label Text="Add Cigar to Humidor" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Label>
-      <StackLayout.GestureRecognizers>
-        <TapGestureRecognizer
-          Tapped="AddCigarTapped"/>
-      </StackLayout.GestureRecognizers>
-    </StackLayout>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:Cigars.Controls;assembly=Cigars"
+  x:Class="Cigars.Views.HumidorPage">
+  
+  <ContentPage Title="Default">
+    <StackLayout Orientation="Vertical">
 
-    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-      <Label Text="Sort by" VerticalOptions="Center" Margin="20,0,20,0" />
-      <controls:MyPicker x:Name="pckSortBy" HorizontalOptions="FillAndExpand" WidthRequest="100" Margin="0,0,20,0" SelectedIndexChanged="OnSortOptionChanged" />
-    </StackLayout>
-    
-    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-      <ListView
-        x:Name="ListHumidorEntries"
-        ItemsSource="{Binding HumidorEntryGroupCollection}"
-        ItemSelected="OnCigarSelection"
-        ItemTapped="OnCigarTapped">
-        <ListView.Header>
+      <StackLayout HeightRequest="50">
+        <Label Text="Add Cigar to Humidor" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Label>
+        <StackLayout.GestureRecognizers>
+          <TapGestureRecognizer
+            Tapped="AddCigarTapped"/>
+        </StackLayout.GestureRecognizers>
+      </StackLayout>
 
-        </ListView.Header>
-        <ListView.ItemTemplate>
-          <DataTemplate>
-            <ViewCell>
-              <ViewCell.View>
-                <Grid HeightRequest="50">
-                  <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                  </Grid.RowDefinitions>
-                  <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*"/>
-                  </Grid.ColumnDefinitions>
-                  <Label Text="{Binding Cigar.Name}" Grid.Row="0" Grid.Column="0"></Label>
-                  <Label Text="{Binding AveragePrice}" Grid.Row="0" Grid.Column="1"></Label>
-                  <Label Text="{Binding Quantity}" Grid.Row="1" Grid.Column="0"></Label>
-                  <Label Text="label text" Grid.Row="1" Grid.Column="1"></Label>
-                </Grid>
-              </ViewCell.View>
-            </ViewCell>
-          </DataTemplate>
-        </ListView.ItemTemplate>
-      </ListView>
+      <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+        <Label Text="Sort by" VerticalOptions="Center" Margin="20,0,20,0" />
+        <controls:MyPicker x:Name="pckSortBy" HorizontalOptions="FillAndExpand" WidthRequest="100" Margin="0,0,20,0" SelectedIndexChanged="OnSortOptionChanged" />
+      </StackLayout>
+
+      <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <ListView
+          x:Name="ListHumidorEntries"
+          ItemsSource="{Binding HumidorEntryGroupCollection}"
+          ItemSelected="OnCigarSelection"
+          ItemTapped="OnCigarTapped">
+          <ListView.Header>
+
+          </ListView.Header>
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <ViewCell>
+                <ViewCell.View>
+                  <Grid HeightRequest="50">
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="*" />
+                      <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*" />
+                      <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{Binding Cigar.Name}" Grid.Row="0" Grid.Column="0"></Label>
+                    <Label Text="{Binding AveragePrice}" Grid.Row="0" Grid.Column="1"></Label>
+                    <Label Text="{Binding Quantity}" Grid.Row="1" Grid.Column="0"></Label>
+                    <Label Text="label text" Grid.Row="1" Grid.Column="1"></Label>
+                  </Grid>
+                </ViewCell.View>
+              </ViewCell>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+      </StackLayout>
     </StackLayout>
-  </StackLayout>
-</ContentPage>
+  </ContentPage>
+  <ContentPage Title="Add"></ContentPage>
+</TabbedPage>

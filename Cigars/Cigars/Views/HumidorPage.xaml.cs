@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace Cigars.Views
 {
-    public partial class HumidorPage : ContentPage
+    public partial class HumidorPage : TabbedPage
     {
 
         private HumidorVM _vm;
@@ -17,7 +17,6 @@ namespace Cigars.Views
             BindingContext = _vm = App.Locator.Humidor;
             InitializeComponent();
             Title = "Humidor";
-
             foreach (string sortName in SORT_PICKER_ITEMS.Keys)
             {
                 pckSortBy.Items.Add(sortName);
@@ -76,6 +75,7 @@ namespace Cigars.Views
         {
             if (_vm.HumidorEntryGroupCollection == null || !_vm.HumidorEntryGroupCollection.Any()) return;
             SortHumidorEntries(_vm.HumidorEntryGroupCollection.ToList());
+            
         }
 
         private void AggregateHumidorEntires(IEnumerable<HumidorEntry> humidorEntries)

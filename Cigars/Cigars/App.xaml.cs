@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Cigars.Database;
 using Cigars.Models;
 using Cigars.Views;
-using GalaSoft.MvvmLight.Ioc;
 using Xamarin.Forms;
 /*
     TODO
@@ -22,6 +19,9 @@ using Xamarin.Forms;
         
     - HumidorPage
         * multiple humidors
+            - Find out how to handle page change event
+            - Change pages from XAML to code, so they can be dynamically
+              generated for each humidor
         * UI: create design
         * 
     - AddHumidorEntryPage
