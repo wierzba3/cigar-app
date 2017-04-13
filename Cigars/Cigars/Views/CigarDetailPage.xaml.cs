@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cigars.Models;
+﻿using Cigars.Models;
 using Cigars.ViewModels;
 using Xamarin.Forms;
 
@@ -24,6 +19,13 @@ namespace Cigars.Views
                 return;
             }
             _vm.CigarName = cigar.Name ?? "<none>";
+            _vm.CigarBrand = cigar.Brand == null ? "unknown" : cigar.Brand.Name ?? "unknown";
+            _vm.ManufacturedIn = "?";
+            _vm.Strength = "?";
+            _vm.Length = "?";
+            _vm.Color = "?";
+            _vm.Shape = "?";
+            _vm.RingGauge = "?";
         }
     }
 }

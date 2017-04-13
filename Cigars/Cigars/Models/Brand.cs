@@ -11,7 +11,7 @@ namespace Cigars.Models
     public class Brand
     {
 
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int BrandId { get; set; }
 
         public string Name { get; set; }

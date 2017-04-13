@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 using Cigars.Models;
-using SQLite;
 using SQLite.Net;
 using SQLite.Net.Async;
 using SQLite.Net.Interop;
@@ -27,6 +24,7 @@ namespace Cigars.Database
             SQLiteConnectionString connectionString = new SQLiteConnectionString(path, true);
             var connectionFactory = new Func<SQLiteConnectionWithLock>(() => new SQLiteConnectionWithLock(platformInstance, connectionString));
             db = new SQLiteAsyncConnection(connectionFactory);
+            db.CreateTableAsync<Brand>();
             db.CreateTableAsync<Cigar>();
             db.CreateTableAsync<Smoke>();
             db.CreateTableAsync<HumidorEntry>();

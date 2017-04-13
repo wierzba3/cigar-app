@@ -17,13 +17,21 @@ namespace Cigars.Views
 
         public ChooseCigarPage(EventHandler<CigarChosenEventHandler> cigarChosenCallbackArg, EventHandler cancelCallbackArg)
         {
-            InitializeComponent();
-            BindingContext = _vm = App.Locator.ChooseCigar;
-            _vm.CigarChosenCallback = cigarChosenCallbackArg;
-            _vm.CancelCallback = cancelCallbackArg;
-            sbSearch.TextChanged += FilterContacts;
-            _allCigars = App.Database.GetAll<Cigar>().Result;
-            lvCigars.ItemsSource = _allCigars;
+            try
+            {
+                InitializeComponent();
+                BindingContext = _vm = App.Locator.ChooseCigar;
+                _vm.CigarChosenCallback = cigarChosenCallbackArg;
+                _vm.CancelCallback = cancelCallbackArg;
+                sbSearch.TextChanged += FilterContacts;
+                _allCigars = App.Database.GetAllWithChildren<Cigar>().Result;
+                lvCigars.ItemsSource = _allCigars;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         private List<Cigar> _allCigars;

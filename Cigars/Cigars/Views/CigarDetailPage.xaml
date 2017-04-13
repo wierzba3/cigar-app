@@ -2,9 +2,51 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Cigars.Views.CigarDetailPage">
+  
   <StackLayout Orientation="Vertical">
-    <Label Text="Cigar Details" FontAttributes="Bold" VerticalOptions="Start" 
+    
+    <Label Text="Cigar Details" FontAttributes="Bold" VerticalOptions="Start"
            HorizontalOptions="Center" Margin="0,20,0,20" />
-    <Label Text="{Binding CigarName}" VerticalOptions="Center" HorizontalOptions="Center" />
+    
+    <StackLayout Orientation="Horizontal" Padding="20,0,20,0" >
+      <Label Text="Cigar: " VerticalOptions="Center" HorizontalOptions="Center" />
+      <Label Text="{Binding CigarName}" VerticalOptions="Center" HorizontalOptions="Center" />  
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" Padding="20,0,20,0" >
+      <Label Text="Brand: " VerticalOptions="Center" HorizontalOptions="Center" />
+      <Label Text="{Binding CigarBrand}" VerticalOptions="Center" HorizontalOptions="Center" />
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" Padding="20,0,20,0" >
+      <Label Text="Manufactured In: " VerticalOptions="Center" HorizontalOptions="Center" />
+      <Label Text="{Binding ManufacturedIn}" VerticalOptions="Center" HorizontalOptions="Center" />
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" Padding="20,0,20,0" >
+      <Label Text="Strength: " VerticalOptions="Center" HorizontalOptions="Center" />
+      <Label Text="{Binding Strength}" VerticalOptions="Center" HorizontalOptions="Center" />
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" Padding="20,0,20,0" >
+      <Label Text="Length: " VerticalOptions="Center" HorizontalOptions="Center" />
+      <Label Text="{Binding Length}" VerticalOptions="Center" HorizontalOptions="Center" />
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" Padding="20,0,20,0" >
+      <Label Text="Color: " VerticalOptions="Center" HorizontalOptions="Center" />
+      <Label Text="{Binding Color}" VerticalOptions="Center" HorizontalOptions="Center" />
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" Padding="20,0,20,0" >
+      <Label Text="Shape: " VerticalOptions="Center" HorizontalOptions="Center" />
+      <Label Text="{Binding Shape}" VerticalOptions="Center" HorizontalOptions="Center" />
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" Padding="20,0,20,0" >
+      <Label Text="Ring Gauge: " VerticalOptions="Center" HorizontalOptions="Center" />
+      <Label Text="{Binding RingGauge}" VerticalOptions="Center" HorizontalOptions="Center" />
+    </StackLayout>
+    
   </StackLayout>
 </ContentPage>

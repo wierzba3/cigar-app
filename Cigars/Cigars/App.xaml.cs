@@ -15,6 +15,7 @@ using Xamarin.Forms;
     - "Other" overflow page
         * add tools to it
             - browse cigars (DONE)
+            - ...others?...
     
     - CigarDetailPage
         * Put cigar details on the page
@@ -118,15 +119,24 @@ namespace Cigars
         {
             int retVal;
 
+            Brand brand1 = new Brand();
+            brand1.Name = "Brand1";
+            Brand brand2 = new Brand();
+            brand2.Name = "Brand2";
+            retVal = Database.Insert(brand1).Result;
+            retVal = Database.Insert(brand2).Result;
 
             retVal = Database.DeleteAll<Smoke>().Result;
             retVal = Database.DeleteAll<Cigar>().Result;
             Cigar cigar = new Cigar();
             cigar.Name = "Padron";
+            cigar.Brand = brand1;
             Cigar cigar2 = new Cigar();
             cigar2.Name = "Churchill";
+            cigar2.Brand = brand2;
             Cigar cigar3 = new Cigar();
             cigar3.Name = "Montecristo";
+            cigar3.Brand = brand1;
             retVal = Database.Insert(cigar).Result;
             retVal = Database.Insert(cigar2).Result;
             retVal = Database.Insert(cigar3).Result;

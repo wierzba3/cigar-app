@@ -18,6 +18,9 @@ namespace Cigars.Models
         [ForeignKey(typeof(Brand))]
         public int BrandId { get; set; }
 
+        [ManyToOne]
+        public Brand Brand { get; set; }
+
         public string Name { get; set; }
 
         public double Length { get; set; }
