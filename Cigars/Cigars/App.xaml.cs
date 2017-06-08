@@ -7,23 +7,19 @@ using Xamarin.Forms;
 /*
     TODO
     - Pre-load cigar data into db 
-      (Decide on whether to store it in a normalized format with multiple types, or flat and denormalized
-
-    - "Other" overflow page
-        * add tools to it
-            - browse cigars (DONE)
-            - ...others?...
+      (Decide on whether to store it in a normalized format with multiple types, or flat and denormalized)
     
     - CigarDetailPage
-        * Put cigar details on the page
+        * UI: create design
         
     - HumidorPage
-        * multiple humidors
-            - Find out how to handle page change event
-            - Change pages from XAML to code, so they can be dynamically
-              generated for each humidor
         * UI: create design
-        * 
+        
+    - ChooseCigarPage
+        * UI: create design
+        * ISSUE: Choosing cigar (which navigates to cigar detail page) first flashes some other screen
+                 It doesn't affect anything functionally but it looks odd.
+        
     - AddHumidorEntryPage
         * UI: create design
         * 
@@ -50,7 +46,7 @@ using Xamarin.Forms;
     - Cloud backup
 
     ISSUES
-    - ACR user dialogs plugin crashes on android launch for api 23
+    - ACR user dialogs plugin crashes on android launch for api 23 (seems to work on my physical phone which is API 23)
 */
 namespace Cigars
 {
@@ -67,8 +63,6 @@ namespace Cigars
             NavigationPage navPage = new NavigationPage(tabPage);
             NavigationPage.SetHasNavigationBar(tabPage, false);
             MainPage = navPage;
-
-
 
             try
             {

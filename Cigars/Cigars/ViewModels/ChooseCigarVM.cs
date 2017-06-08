@@ -20,9 +20,7 @@ namespace Cigars.ViewModels
         public EventHandler CancelCallback;
 
         public event PropertyChangedEventHandler PropertyChanged = delegate{};
-
-
-
+        
         private ObservableCollection<Cigar> _cigarCollection;
         public ObservableCollection<Cigar> CigarCollection
         {

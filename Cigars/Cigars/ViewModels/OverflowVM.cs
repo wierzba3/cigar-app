@@ -39,7 +39,6 @@ namespace Cigars.ViewModels
         private void HandleCigarChosen(object sender, CigarChosenEventHandler e)
         {
             if (e.CigarObject == null) return;
-            App.Current.MainPage.Navigation.PopAsync();
             App.Current.MainPage.Navigation.PushAsync(new CigarDetailPage(e.CigarObject));
         }
 
@@ -47,8 +46,5 @@ namespace Cigars.ViewModels
         {
             //do nothing
         }
-
     }
-
-
 }

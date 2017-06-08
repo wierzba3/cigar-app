@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace Cigars.Views
 {
-    public partial class HumidorPage : TabbedPage
+    public partial class HumidorPage : ContentPage
     {
 
         private HumidorVM _vm;
