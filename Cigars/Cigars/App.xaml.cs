@@ -8,7 +8,9 @@ using Xamarin.Forms;
     TODO
     - Pre-load cigar data into db 
       (Decide on whether to store it in a normalized format with multiple types, or flat and denormalized)
-    
+    - Fix error on startup seen on my samsung galaxy s7 phone:
+        Detected problem with app native libraries (please consult log for detail): libmonosgen-32bit-2.0.so: unauthorized access to "/system/lib/libsqlite.so"
+
     - CigarDetailPage
         * UI: create design
         

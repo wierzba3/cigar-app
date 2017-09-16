@@ -12,3 +12,6 @@ Cigars/Cigars.Windows/bin/
 Cigars/Cigars.Windows/obj/
 Cigars/Cigars.WinPhone/bin/
 Cigars/Cigars.WinPhone/obj/
+
+UpgradeLog*.htm
+*/project.lock.json
